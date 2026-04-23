@@ -3,6 +3,9 @@ import type { BaseUiData } from '../data/types.js'
 
 const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
 
+const IN_ATTRIBUTE_SELECTOR_REGEX = /\[[\w-]*$/
+const IN_VAR_CALL_REGEX = /var\([\w-]*$/
+
 export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   constructor(private readonly data: BaseUiData) {}
 
@@ -14,17 +17,12 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
       .lineAt(position)
       .text.slice(0, position.character)
 
-    const inAttributeSelector = /\[[\w-]*$/.test(linePrefix)
-    const inVarCall = /var\([\w-]*$/.test(linePrefix)
-
-    if (inAttributeSelector) {
+    if (IN_ATTRIBUTE_SELECTOR_REGEX.test(linePrefix)) {
       return this.attributeCompletions()
     }
-
-    if (inVarCall) {
+    if (IN_VAR_CALL_REGEX.test(linePrefix)) {
       return this.varCompletions()
     }
-
     return []
   }
 
