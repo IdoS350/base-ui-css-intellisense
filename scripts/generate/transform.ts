@@ -1,4 +1,8 @@
-import type { CssVariable, DataAttribute } from '../../src/data/types.js'
+import type {
+  ComponentData,
+  CssVariable,
+  DataAttribute,
+} from '../../src/data/types.js'
 import type { ParsedMember } from './types.js'
 
 export function parseTypeUnion(rawType?: string): { value: string }[] {
@@ -20,29 +24,48 @@ export function parseTypeUnion(rawType?: string): { value: string }[] {
     .map((value) => ({ value }))
 }
 
-export function transformAttributes(items: ParsedMember[]): DataAttribute[] {
-  return items.map((item) => ({
+function toAttribute(item: ParsedMember): DataAttribute {
+  return {
     name: item.value,
     description: item.description,
     values: parseTypeUnion(item.rawType),
-    component: item.component,
-    sourceFile: item.sourceFile,
-  }))
+  }
 }
 
-export function transformCssVars(items: ParsedMember[]): CssVariable[] {
-  return items.map((item) => {
-    const description = item.rawType
-      ? item.description
-        ? `${item.description} (${item.rawType})`
-        : item.rawType
-      : item.description
+function toCssVar(item: ParsedMember): CssVariable {
+  const description = item.rawType
+    ? item.description
+      ? `${item.description} (${item.rawType})`
+      : item.rawType
+    : item.description
 
-    return {
-      name: item.value,
-      description,
-      component: item.component,
-      sourceFile: item.sourceFile,
+  return { name: item.value, description }
+}
+
+export function groupByComponent(
+  rawAttrs: ParsedMember[],
+  rawCssVars: ParsedMember[],
+): Record<string, ComponentData> {
+  const components: Record<string, ComponentData> = {}
+
+  for (const item of rawAttrs) {
+    if (!components[item.component]) {
+      components[item.component] = {
+        attributes: [],
+        cssVariables: [],
+        attributesSourceFile: item.sourceFile,
+      }
     }
-  })
+    components[item.component].attributes.push(toAttribute(item))
+  }
+
+  for (const item of rawCssVars) {
+    if (!components[item.component]) {
+      components[item.component] = { attributes: [], cssVariables: [] }
+    }
+    components[item.component].cssVarsSourceFile = item.sourceFile
+    components[item.component].cssVariables.push(toCssVar(item))
+  }
+
+  return components
 }

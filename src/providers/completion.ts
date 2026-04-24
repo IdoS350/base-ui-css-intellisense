@@ -27,52 +27,60 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   }
 
   private attributeCompletions(): vscode.CompletionItem[] {
-    return this.data.attributes.map((attr) => {
-      const item = new vscode.CompletionItem(
-        attr.name,
-        vscode.CompletionItemKind.Property,
-      )
-      item.detail = `Base UI · ${attr.component}`
-      item.documentation = this.buildDocs(
-        attr.description,
-        attr.component,
-        attr.sourceFile,
-      )
-      item.sortText = `0_${attr.name}`
-      return item
-    })
+    return Object.entries(this.data.components).flatMap(
+      ([component, componentData]) =>
+        componentData.attributes.map((attr) => {
+          const item = new vscode.CompletionItem(
+            attr.name,
+            vscode.CompletionItemKind.Property,
+          )
+          item.detail = `Base UI · ${component}`
+          item.documentation = this.buildDocs(
+            attr.description,
+            component,
+            componentData.attributesSourceFile,
+          )
+          item.sortText = `0_${attr.name}`
+          return item
+        }),
+    )
   }
 
   private varCompletions(): vscode.CompletionItem[] {
-    return this.data.cssVariables.map((v) => {
-      const item = new vscode.CompletionItem(
-        v.name,
-        vscode.CompletionItemKind.Variable,
-      )
-      item.detail = `Base UI · ${v.component}`
-      item.documentation = this.buildDocs(
-        v.description,
-        v.component,
-        v.sourceFile,
-      )
-      item.sortText = `0_${v.name}`
-      return item
-    })
+    return Object.entries(this.data.components).flatMap(
+      ([component, componentData]) =>
+        componentData.cssVariables.map((v) => {
+          const item = new vscode.CompletionItem(
+            v.name,
+            vscode.CompletionItemKind.Variable,
+          )
+          item.detail = `Base UI · ${component}`
+          item.documentation = this.buildDocs(
+            v.description,
+            component,
+            componentData.cssVarsSourceFile,
+          )
+          item.sortText = `0_${v.name}`
+          return item
+        }),
+    )
   }
 
   private buildDocs(
     description: string | undefined,
     component: string,
-    sourceFile: string,
+    sourceFile: string | undefined,
   ): vscode.MarkdownString {
     const md = new vscode.MarkdownString()
     if (description) {
       md.appendMarkdown(`${description}\n\n`)
     }
     md.appendMarkdown(`**Component:** ${component}\n\n`)
-    md.appendMarkdown(
-      `[View source on GitHub](${BASE_UI_GITHUB}/${sourceFile})`,
-    )
+    if (sourceFile) {
+      md.appendMarkdown(
+        `[View source on GitHub](${BASE_UI_GITHUB}/${sourceFile})`,
+      )
+    }
     return md
   }
 }

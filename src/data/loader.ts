@@ -16,8 +16,7 @@ export function loadData(context: vscode.ExtensionContext): BaseUiData {
     console.warn(
       '[base-ui-intellisense] base-ui-attributes.json not found. Run `pnpm run generate` first.',
     )
-    cached = { version: 'unknown', attributes: [], cssVariables: [] }
-    return cached
+    return (cached = { version: 'unknown', components: {} })
   }
 
   const raw = fs.readFileSync(jsonPath, 'utf-8')

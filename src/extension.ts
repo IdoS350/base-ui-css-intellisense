@@ -18,8 +18,11 @@ export function activate(context: vscode.ExtensionContext): void {
 
   context.subscriptions.push(disposable)
 
+  const components = Object.values(data.components)
+  const attrCount = components.reduce((n, c) => n + c.attributes.length, 0)
+  const cssVarCount = components.reduce((n, c) => n + c.cssVariables.length, 0)
   console.log(
-    `[base-ui-intellisense] Activated. Loaded ${data.attributes.length} attributes and ${data.cssVariables.length} CSS variables from Base UI ${data.version}.`,
+    `[base-ui-intellisense] Activated. Loaded ${attrCount} attributes and ${cssVarCount} CSS variables across ${components.length} components from Base UI ${data.version}.`,
   )
 }
 

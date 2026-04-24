@@ -1,10 +1,6 @@
 import * as assert from 'assert'
 import { describe, it } from 'node:test'
-import {
-  parseTypeUnion,
-  transformAttributes,
-  transformCssVars,
-} from './transform.js'
+import { groupByComponent, parseTypeUnion } from './transform.js'
 
 describe('parseTypeUnion', () => {
   it('parses a quoted union', () => {
@@ -39,10 +35,9 @@ describe('parseTypeUnion', () => {
   })
 })
 
-
-describe('transformAttributes', () => {
-  it('maps value → name and keeps description', () => {
-    const items = [
+describe('groupByComponent', () => {
+  it('groups attributes under their component', () => {
+    const rawAttrs = [
       {
         value: 'data-open',
         description: 'Present when open.',
@@ -50,15 +45,21 @@ describe('transformAttributes', () => {
         sourceFile: 'packages/react/src/dialog/DialogDataAttributes.ts',
       },
     ]
-    const [attr] = transformAttributes(items)
-    assert.strictEqual(attr.name, 'data-open')
-    assert.strictEqual(attr.description, 'Present when open.')
-    assert.strictEqual(attr.component, 'Dialog')
-    assert.deepStrictEqual(attr.values, [])
+    const result = groupByComponent(rawAttrs, [])
+    assert.ok(result['Dialog'])
+    assert.strictEqual(result['Dialog'].attributes[0].name, 'data-open')
+    assert.strictEqual(
+      result['Dialog'].attributes[0].description,
+      'Present when open.',
+    )
+    assert.strictEqual(
+      result['Dialog'].attributesSourceFile,
+      'packages/react/src/dialog/DialogDataAttributes.ts',
+    )
   })
 
   it('parses values from rawType', () => {
-    const items = [
+    const rawAttrs = [
       {
         value: 'data-side',
         rawType: `'top' | 'bottom'`,
@@ -66,26 +67,35 @@ describe('transformAttributes', () => {
         sourceFile: 'packages/react/src/combobox/ComboboxDataAttributes.ts',
       },
     ]
-    const [attr] = transformAttributes(items)
-    assert.deepStrictEqual(attr.values, [{ value: 'top' }, { value: 'bottom' }])
+    const result = groupByComponent(rawAttrs, [])
+    assert.deepStrictEqual(result['Combobox'].attributes[0].values, [
+      { value: 'top' },
+      { value: 'bottom' },
+    ])
   })
-})
 
-describe('transformCssVars', () => {
-  it('maps value → name', () => {
-    const items = [
+  it('groups css variables under their component', () => {
+    const rawCssVars = [
       {
         value: '--anchor-width',
         description: 'The width of the anchor.',
         component: 'Combobox',
-        sourceFile: 'a.ts',
+        sourceFile: 'packages/react/src/combobox/ComboboxCssVars.ts',
       },
     ]
-    assert.strictEqual(transformCssVars(items)[0].name, '--anchor-width')
+    const result = groupByComponent([], rawCssVars)
+    assert.strictEqual(
+      result['Combobox'].cssVariables[0].name,
+      '--anchor-width',
+    )
+    assert.strictEqual(
+      result['Combobox'].cssVarsSourceFile,
+      'packages/react/src/combobox/ComboboxCssVars.ts',
+    )
   })
 
-  it('appends rawType to description in parens', () => {
-    const items = [
+  it('appends rawType to css var description in parens', () => {
+    const rawCssVars = [
       {
         value: '--nested-dialogs',
         description: 'How many dialogs are nested.',
@@ -94,21 +104,35 @@ describe('transformCssVars', () => {
         sourceFile: 'a.ts',
       },
     ]
+    const result = groupByComponent([], rawCssVars)
     assert.strictEqual(
-      transformCssVars(items)[0].description,
+      result['Dialog'].cssVariables[0].description,
       'How many dialogs are nested. (number)',
     )
   })
 
-  it('uses rawType alone as description when no description exists', () => {
-    const items = [
+  it('merges attributes and css vars for the same component', () => {
+    const rawAttrs = [
       {
-        value: '--some-var',
-        rawType: '<length>',
-        component: 'Foo',
-        sourceFile: 'a.ts',
+        value: 'data-open',
+        component: 'Dialog',
+        sourceFile: 'DialogDataAttributes.ts',
       },
     ]
-    assert.strictEqual(transformCssVars(items)[0].description, '<length>')
+    const rawCssVars = [
+      {
+        value: '--nested-dialogs',
+        component: 'Dialog',
+        sourceFile: 'DialogCssVars.ts',
+      },
+    ]
+    const result = groupByComponent(rawAttrs, rawCssVars)
+    assert.strictEqual(result['Dialog'].attributes.length, 1)
+    assert.strictEqual(result['Dialog'].cssVariables.length, 1)
+    assert.strictEqual(
+      result['Dialog'].attributesSourceFile,
+      'DialogDataAttributes.ts',
+    )
+    assert.strictEqual(result['Dialog'].cssVarsSourceFile, 'DialogCssVars.ts')
   })
 })

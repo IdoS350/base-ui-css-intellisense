@@ -1,9 +1,13 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import type { BaseUiData } from '../../src/data/types.js'
-import { parseCssVarFiles, parseDataAttrFiles, parseSharedEnums } from './parse.js'
+import {
+  parseCssVarFiles,
+  parseDataAttrFiles,
+  parseSharedEnums,
+} from './parse.js'
 import { readVersion, validateRepo } from './repo.js'
-import { transformAttributes, transformCssVars } from './transform.js'
+import { groupByComponent } from './transform.js'
 
 function parseArgs(): { repoPath: string; outputPath: string } {
   const raw = process.argv[2]
@@ -48,13 +52,22 @@ async function main() {
     `✓ Parsed ${cssVarFiles} *CssVars.ts files → ${rawCssVars.length} members`,
   )
 
-  const attributes = transformAttributes(rawAttrs)
-  const cssVariables = transformCssVars(rawCssVars)
+  const components = groupByComponent(rawAttrs, rawCssVars)
+  const componentCount = Object.keys(components).length
+  const attrCount = Object.values(components).reduce(
+    (n, c) => n + c.attributes.length,
+    0,
+  )
+  const cssVarCount = Object.values(components).reduce(
+    (n, c) => n + c.cssVariables.length,
+    0,
+  )
 
-  console.log(`✓ ${attributes.length} data attributes`)
-  console.log(`✓ ${cssVariables.length} CSS variables`)
+  console.log(
+    `✓ ${componentCount} components, ${attrCount} data attributes, ${cssVarCount} CSS variables`,
+  )
 
-  const output: BaseUiData = { version, attributes, cssVariables }
+  const output: BaseUiData = { version, components }
   fs.mkdirSync(path.dirname(outputPath), { recursive: true })
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf-8')
 
