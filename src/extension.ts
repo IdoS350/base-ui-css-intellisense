@@ -2,27 +2,48 @@ import * as vscode from 'vscode'
 import { loadData } from './data/loader.js'
 import { BaseUiCompletionProvider } from './providers/completion.js'
 
-const CSS_LANGUAGES = ['css', 'scss', 'less']
-const TRIGGER_CHARACTERS = ['[', '-', '(', '"', "'"]
+// `[` triggers completion in scss/less but the built-in CSS language server
+// intercepts it in plain .css files. Extensions like Tailwind CSS IntelliSense
+// and PostCSS also override the language ID of .css files. Register each group
+// separately: scss/less use `[` as a trigger; everything else uses `-` instead.
+const CSS_LIKE_LANGUAGES = ['css', 'tailwindcss', 'postcss']
+const SCSS_LESS_LANGUAGES = ['scss', 'less']
+const TRIGGER_CHARACTERS = ['[', '-', '"', "'"]
+const TRIGGER_CHARACTERS_CSS = ['-', '"', "'"]
 
 export function activate(context: vscode.ExtensionContext): void {
   const data = loadData(context)
+  const provider = new BaseUiCompletionProvider(data)
 
-  const completionProvider = new BaseUiCompletionProvider(data)
-
-  const disposable = vscode.languages.registerCompletionItemProvider(
-    CSS_LANGUAGES.map((language) => ({ language })),
-    completionProvider,
-    ...TRIGGER_CHARACTERS,
+  context.subscriptions.push(
+    vscode.languages.registerCompletionItemProvider(
+      CSS_LIKE_LANGUAGES.map((language) => ({ language })),
+      provider,
+      ...TRIGGER_CHARACTERS_CSS,
+    ),
+    vscode.languages.registerCompletionItemProvider(
+      SCSS_LESS_LANGUAGES.map((language) => ({ language })),
+      provider,
+      ...TRIGGER_CHARACTERS,
+    ),
   )
 
-  context.subscriptions.push(disposable)
+  const componentCount = Object.keys(data.components).length
+  const attrCount = Object.values(data.components).reduce(
+    (n, c) => n + c.attributes.length,
+    0,
+  )
 
-  const components = Object.values(data.components)
-  const attrCount = components.reduce((n, c) => n + c.attributes.length, 0)
-  const cssVarCount = components.reduce((n, c) => n + c.cssVariables.length, 0)
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeTextDocument((e) => {
+      console.log(`[base-ui] text changed in lang=${e.document.languageId}`)
+    }),
+  )
+
   console.log(
-    `[base-ui-intellisense] Activated. Loaded ${attrCount} attributes and ${cssVarCount} CSS variables across ${components.length} components from Base UI ${data.version}.`,
+    `[base-ui-intellisense] v3 Activated. ` +
+      `${attrCount} attributes across ${componentCount} components. ` +
+      `Registered CSS(${TRIGGER_CHARACTERS_CSS}) SCSS/Less(${TRIGGER_CHARACTERS}).`,
   )
 }
 

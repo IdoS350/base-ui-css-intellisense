@@ -1,0 +1,173 @@
+{
+  "version": 1.1,
+  "properties": [
+    {
+      "name": "--accordion-panel-height",
+      "description": "The accordion panel's height. (number)\n\n**Used by:** AccordionPanel\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/accordion/panel/AccordionPanelCssVars.ts)"
+    },
+    {
+      "name": "--accordion-panel-width",
+      "description": "The accordion panel's width. (number)\n\n**Used by:** AccordionPanel\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/accordion/panel/AccordionPanelCssVars.ts)"
+    },
+    {
+      "name": "--collapsible-panel-height",
+      "description": "The collapsible panel's height. (number)\n\n**Used by:** CollapsiblePanel\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/collapsible/panel/CollapsiblePanelCssVars.ts)"
+    },
+    {
+      "name": "--collapsible-panel-width",
+      "description": "The collapsible panel's width. (number)\n\n**Used by:** CollapsiblePanel\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/collapsible/panel/CollapsiblePanelCssVars.ts)"
+    },
+    {
+      "name": "--available-width",
+      "description": "The available width between the trigger and the edge of the viewport. (number)\n\n**Used by:** ComboboxPositioner, MenuPositioner, NavigationMenuPositioner, PopoverPositioner, PreviewCardPositioner, SelectPositioner, ToastPositioner, TooltipPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts)"
+    },
+    {
+      "name": "--available-height",
+      "description": "The available height between the trigger and the edge of the viewport. (number)\n\n**Used by:** ComboboxPositioner, MenuPositioner, NavigationMenuPositioner, PopoverPositioner, PreviewCardPositioner, SelectPositioner, ToastPositioner, TooltipPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts)"
+    },
+    {
+      "name": "--anchor-width",
+      "description": "The anchor's width. (number)\n\n**Used by:** ComboboxPositioner, MenuPositioner, NavigationMenuPositioner, PopoverPositioner, PreviewCardPositioner, SelectPositioner, ToastPositioner, TooltipPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts)"
+    },
+    {
+      "name": "--anchor-height",
+      "description": "The anchor's height. (number)\n\n**Used by:** ComboboxPositioner, MenuPositioner, NavigationMenuPositioner, PopoverPositioner, PreviewCardPositioner, SelectPositioner, ToastPositioner, TooltipPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts)"
+    },
+    {
+      "name": "--transform-origin",
+      "description": "The coordinates that this element is anchored to. Used for animations and transitions. (string)\n\n**Used by:** ComboboxPositioner, MenuPositioner, NavigationMenuPositioner, PopoverPositioner, PreviewCardPositioner, SelectPositioner, ToastPositioner, TooltipPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts)"
+    },
+    {
+      "name": "--nested-dialogs",
+      "description": "Indicates how many dialogs are nested within. (number)\n\n**Used by:** DialogPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/dialog/popup/DialogPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-swipe-progress",
+      "description": "The swipe progress of the drawer gesture. (number)\n\n**Used by:** DrawerBackdrop\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/backdrop/DrawerBackdropCssVars.ts)"
+    },
+    {
+      "name": "--nested-drawers",
+      "description": "The number of nested drawers that are currently open. (number)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-height",
+      "description": "The height of the drawer popup. (CSS length)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-frontmost-height",
+      "description": "The height of the frontmost open drawer in the current nested drawer stack. (CSS length)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-swipe-movement-x",
+      "description": "The swipe movement on the X axis. (CSS length)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-swipe-movement-y",
+      "description": "The swipe movement on the Y axis. (CSS length)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-snap-point-offset",
+      "description": "The snap point offset used for translating the drawer. (CSS length)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--drawer-swipe-strength",
+      "description": "A scalar (0.1-1) used to scale the swipe release transition duration in CSS. (number)\n\n**Used by:** DrawerPopup\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/drawer/popup/DrawerPopupCssVars.ts)"
+    },
+    {
+      "name": "--popup-width",
+      "description": "The width of the parent popup. This variable is placed on the 'previous' container and stores the width of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content.\n\n**Used by:** MenuViewport, NavigationMenuPopup, PopoverPopup, PopoverViewport, PreviewCardViewport, TooltipViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/menu/viewport/MenuViewportCssVars.ts)"
+    },
+    {
+      "name": "--popup-height",
+      "description": "The height of the parent popup. This variable is placed on the 'previous' container and stores the height of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content.\n\n**Used by:** MenuViewport, NavigationMenuPopup, PopoverPopup, PopoverViewport, PreviewCardViewport, TooltipViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/menu/viewport/MenuViewportCssVars.ts)"
+    },
+    {
+      "name": "--positioner-width",
+      "description": "The fixed width of the positioner element. (number)\n\n**Used by:** NavigationMenuPositioner, PopoverPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/navigation-menu/positioner/NavigationMenuPositionerCssVars.ts)"
+    },
+    {
+      "name": "--positioner-height",
+      "description": "The fixed height of the positioner element. (number)\n\n**Used by:** NavigationMenuPositioner, PopoverPositioner\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/navigation-menu/positioner/NavigationMenuPositionerCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-thumb-height",
+      "description": "The scroll area thumb's height. (number)\n\n**Used by:** ScrollAreaScrollbar\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-thumb-width",
+      "description": "The scroll area thumb's width. (number)\n\n**Used by:** ScrollAreaScrollbar\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-corner-height",
+      "description": "The scroll area's corner height. (number)\n\n**Used by:** ScrollAreaRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/root/ScrollAreaRootCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-corner-width",
+      "description": "The scroll area's corner width. (number)\n\n**Used by:** ScrollAreaRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/root/ScrollAreaRootCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-overflow-x-start",
+      "description": "The distance from the horizontal start edge in pixels. (number)\n\n**Used by:** ScrollAreaViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-overflow-x-end",
+      "description": "The distance from the horizontal end edge in pixels. (number)\n\n**Used by:** ScrollAreaViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-overflow-y-start",
+      "description": "The distance from the vertical start edge in pixels. (number)\n\n**Used by:** ScrollAreaViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts)"
+    },
+    {
+      "name": "--scroll-area-overflow-y-end",
+      "description": "The distance from the vertical end edge in pixels. (number)\n\n**Used by:** ScrollAreaViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts)"
+    },
+    {
+      "name": "--active-tab-left",
+      "description": "Indicates the distance on the left side from the parent's container if the tab is active. (number)\n\n**Used by:** TabsIndicator\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts)"
+    },
+    {
+      "name": "--active-tab-right",
+      "description": "Indicates the distance on the right side from the parent's container if the tab is active. (number)\n\n**Used by:** TabsIndicator\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts)"
+    },
+    {
+      "name": "--active-tab-top",
+      "description": "Indicates the distance on the top side from the parent's container if the tab is active. (number)\n\n**Used by:** TabsIndicator\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts)"
+    },
+    {
+      "name": "--active-tab-bottom",
+      "description": "Indicates the distance on the bottom side from the parent's container if the tab is active. (number)\n\n**Used by:** TabsIndicator\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts)"
+    },
+    {
+      "name": "--active-tab-width",
+      "description": "Indicates the width of the tab if it is active. (number)\n\n**Used by:** TabsIndicator\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts)"
+    },
+    {
+      "name": "--active-tab-height",
+      "description": "Indicates the height of the tab if it is active. (number)\n\n**Used by:** TabsIndicator\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts)"
+    },
+    {
+      "name": "--toast-index",
+      "description": "Indicates the index of the toast in the list. (number)\n\n**Used by:** ToastRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/toast/root/ToastRootCssVars.ts)"
+    },
+    {
+      "name": "--toast-offset-y",
+      "description": "Indicates the vertical pixels offset of the toast in the list when expanded. (number)\n\n**Used by:** ToastRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/toast/root/ToastRootCssVars.ts)"
+    },
+    {
+      "name": "--toast-height",
+      "description": "Indicates the measured natural height of the toast in pixels. (number)\n\n**Used by:** ToastRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/toast/root/ToastRootCssVars.ts)"
+    },
+    {
+      "name": "--toast-swipe-movement-x",
+      "description": "Indicates the horizontal swipe movement of the toast. (number)\n\n**Used by:** ToastRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/toast/root/ToastRootCssVars.ts)"
+    },
+    {
+      "name": "--toast-swipe-movement-y",
+      "description": "Indicates the vertical swipe movement of the toast. (number)\n\n**Used by:** ToastRoot\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/toast/root/ToastRootCssVars.ts)"
+    },
+    {
+      "name": "--toast-frontmost-height",
+      "description": "Indicates the height of the frontmost toast. (number)\n\n**Used by:** ToastViewport\n\n[View source on GitHub](https://github.com/mui/base-ui/blob/master/packages/react/src/toast/viewport/ToastViewportCssVars.ts)"
+    }
+  ]
+}

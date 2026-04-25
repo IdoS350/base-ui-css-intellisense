@@ -10,18 +10,21 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:css",
-    "onLanguage:scss",
-    "onLanguage:less"
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
-  "contributes": {},
+  "contributes": {
+    "css.customData": [
+      "./data/base-ui.css-data.json"
+    ]
+  },
   "scripts": {
     "build": "node scripts/build.mjs",
     "watch": "node scripts/build.mjs --watch",
     "package": "vsce package",
     "generate": "tsx scripts/generate/index.ts",
-    "test": "tsx --test scripts/generate/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test scripts/generate/*.test.ts src/util/context.test.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
