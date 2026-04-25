@@ -6,7 +6,7 @@ dist/
 out/
 
 # Packaged extension
-*.vsix
+releases/
 
 # Generated data (produced by pnpm run generate)
 data/base-ui-attributes.json

@@ -9,3 +9,7 @@ prompts/**
 .prettierrc
 tsconfig.json
 pnpm-lock.yaml
+releases/**
+.prettierignore
+CLAUDE.md
+.claude/**

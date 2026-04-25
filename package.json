@@ -3,9 +3,9 @@
   "displayName": "Base UI CSS IntelliSense",
   "description": "Autocomplete and hover docs for Base UI data attributes and CSS variables in CSS, SCSS, and Less files.",
   "version": "0.1.0",
-  "publisher": "<your-publisher-id>",
+  "publisher": "idos",
   "license": "MIT",
-  "icon": "assets/icon-128x128.png",
+  "icon": "assets/icon-full-res.png",
   "homepage": "https://github.com/IdoS350/base-ui-css-intellisense",
   "repository": {
     "type": "git",
@@ -40,9 +40,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "watch": "node scripts/build.mjs --watch",
-    "package": "vsce package",
+    "package": "mkdir -p releases && vsce package --out releases/",
     "publish:vsce": "vsce publish",
-    "publish:ovsx": "ovsx publish $(ls *.vsix | head -1) -p $OVSX_TOKEN",
+    "publish:ovsx": "ovsx publish $(ls releases/*.vsix | head -1) -p $OVSX_TOKEN",
     "generate": "tsx scripts/generate/index.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
