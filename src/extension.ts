@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import { loadData } from './data/loader.js'
 import { BaseUiCompletionProvider } from './providers/completion.js'
+import { BaseUiHoverProvider } from './providers/hover.js'
 
 // `[` triggers completion in scss/less but the built-in CSS language server
 // intercepts it in plain .css files. Extensions like Tailwind CSS IntelliSense
@@ -13,18 +14,27 @@ const TRIGGER_CHARACTERS_CSS = ['-', '"', "'"]
 
 export function activate(context: vscode.ExtensionContext): void {
   const data = loadData(context)
-  const provider = new BaseUiCompletionProvider(data)
+  const completionProvider = new BaseUiCompletionProvider(data)
+  const hoverProvider = new BaseUiHoverProvider(
+    completionProvider.attributeByName,
+  )
+
+  const allLanguages = [...CSS_LIKE_LANGUAGES, ...SCSS_LESS_LANGUAGES]
 
   context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(
       CSS_LIKE_LANGUAGES.map((language) => ({ language })),
-      provider,
+      completionProvider,
       ...TRIGGER_CHARACTERS_CSS,
     ),
     vscode.languages.registerCompletionItemProvider(
       SCSS_LESS_LANGUAGES.map((language) => ({ language })),
-      provider,
+      completionProvider,
       ...TRIGGER_CHARACTERS,
+    ),
+    vscode.languages.registerHoverProvider(
+      allLanguages.map((language) => ({ language })),
+      hoverProvider,
     ),
   )
 

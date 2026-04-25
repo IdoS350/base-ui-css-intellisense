@@ -55,7 +55,7 @@ export function detectFromPrefix(prefix: string): CompletionContext {
   return { kind: 'attribute-name', prefix: insideBracket }
 }
 
-function findLastUnclosedBracket(prefix: string): number {
+export function findLastUnclosedBracket(prefix: string): number {
   let depth = 0
   for (let i = prefix.length - 1; i >= 0; i--) {
     if (prefix[i] === ']') depth++

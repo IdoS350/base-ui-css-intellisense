@@ -24,7 +24,7 @@
     "package": "vsce package",
     "generate": "tsx scripts/generate/index.ts",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test scripts/generate/*.test.ts src/util/context.test.ts",
+    "test": "tsx --test scripts/generate/*.test.ts src/util/*.test.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
