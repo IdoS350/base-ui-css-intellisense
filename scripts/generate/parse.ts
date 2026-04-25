@@ -2,8 +2,8 @@ import fg from 'fast-glob'
 import * as fs from 'fs'
 import * as path from 'path'
 import ts from 'typescript'
-import { extractJsDocDescription, extractJsDocType } from './jsdoc.js'
-import type { ParsedMember, SharedValueMap } from './types.js'
+import { extractJsDocDescription, extractJsDocType } from './jsdoc'
+import type { ParsedMember, SharedValueMap } from './types'
 
 export function deriveComponentName(filePath: string): string {
   const base = path.basename(filePath)

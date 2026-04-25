@@ -1,7 +1,6 @@
-import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
-import type { AttributeIndex } from '../providers/completion.js'
-import { buildHoverDocs } from './hover-docs.js'
+import { describe, expect, it } from 'vitest'
+import type { AttributeIndex } from '../providers/completion'
+import { buildHoverDocs } from './hover-docs'
 
 describe('buildHoverDocs', () => {
   it('includes description, components, and GitHub link when all fields present', () => {
@@ -16,9 +15,9 @@ describe('buildHoverDocs', () => {
         'packages/react/src/dialog/popup/DialogPopupDataAttributes.ts',
     }
     const md = buildHoverDocs(entry)
-    assert(md.includes('Present when open.'))
-    assert(md.includes('DialogPopup, PopoverPopup'))
-    assert(md.includes('github.com/mui/base-ui'))
+    expect(md).toContain('Present when open.')
+    expect(md).toContain('DialogPopup, PopoverPopup')
+    expect(md).toContain('github.com/mui/base-ui')
   })
 
   it('omits GitHub link when sourceFile is undefined and contains no "undefined" text', () => {
@@ -28,8 +27,8 @@ describe('buildHoverDocs', () => {
       sourceFile: undefined,
     }
     const md = buildHoverDocs(minimal)
-    assert(!md.includes('undefined'))
-    assert(md.includes('ComboboxPopup'))
+    expect(md).not.toContain('undefined')
+    expect(md).toContain('ComboboxPopup')
   })
 
   it('omits description line when attribute has no description', () => {
@@ -39,8 +38,8 @@ describe('buildHoverDocs', () => {
       sourceFile: undefined,
     }
     const md = buildHoverDocs(entry)
-    assert(md.includes('Select'))
-    assert(!md.includes('undefined'))
+    expect(md).toContain('Select')
+    expect(md).not.toContain('undefined')
   })
 
   it('lists multiple components separated by commas', () => {
@@ -50,6 +49,6 @@ describe('buildHoverDocs', () => {
       sourceFile: undefined,
     }
     const md = buildHoverDocs(entry)
-    assert(md.includes('TooltipPopup, PopoverPopup, SelectPopup'))
+    expect(md).toContain('TooltipPopup, PopoverPopup, SelectPopup')
   })
 })

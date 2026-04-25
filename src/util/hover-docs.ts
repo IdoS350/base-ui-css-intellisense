@@ -1,4 +1,4 @@
-import type { AttributeIndex } from '../providers/completion.js'
+import type { AttributeIndex } from '../providers/completion'
 
 const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
 

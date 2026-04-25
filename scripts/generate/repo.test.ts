@@ -1,20 +1,19 @@
-import * as assert from 'assert'
 import * as fs from 'fs'
-import { after, describe, it } from 'node:test'
-import { validateRepo } from './repo.js'
-import { makeTmpDir, writeFile } from './test-helpers.js'
+import { afterAll, describe, expect, it } from 'vitest'
+import { validateRepo } from './repo'
+import { makeTmpDir, writeFile } from './test-helpers'
 
 describe('validateRepo', () => {
   const tmpRoot = makeTmpDir()
-  after(() => fs.rmSync(tmpRoot, { recursive: true, force: true }))
+  afterAll(() => fs.rmSync(tmpRoot, { recursive: true, force: true }))
 
   it('returns false for an empty directory', () => {
-    assert.strictEqual(validateRepo(tmpRoot), false)
+    expect(validateRepo(tmpRoot)).toBe(false)
   })
 
   it('returns true when expected paths exist', () => {
     writeFile(tmpRoot, 'package.json', '{"version":"1.0.0"}')
     writeFile(tmpRoot, 'packages/react/src/.keep', '')
-    assert.strictEqual(validateRepo(tmpRoot), true)
+    expect(validateRepo(tmpRoot)).toBe(true)
   })
 })

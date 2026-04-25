@@ -1,37 +1,33 @@
-import * as assert from 'assert'
-import { describe, it } from 'node:test'
-import { groupByComponent, parseTypeUnion } from './transform.js'
+import { describe, expect, it } from 'vitest'
+import { groupByComponent, parseTypeUnion } from './transform'
 
 describe('parseTypeUnion', () => {
   it('parses a quoted union', () => {
-    assert.deepStrictEqual(
-      parseTypeUnion(`'top' | 'bottom' | 'left' | 'right'`),
-      [
-        { value: 'top' },
-        { value: 'bottom' },
-        { value: 'left' },
-        { value: 'right' },
-      ],
-    )
+    expect(parseTypeUnion(`'top' | 'bottom' | 'left' | 'right'`)).toEqual([
+      { value: 'top' },
+      { value: 'bottom' },
+      { value: 'left' },
+      { value: 'right' },
+    ])
   })
 
   it('handles double-quoted values', () => {
-    assert.deepStrictEqual(parseTypeUnion(`"asc" | "desc"`), [
+    expect(parseTypeUnion(`"asc" | "desc"`)).toEqual([
       { value: 'asc' },
       { value: 'desc' },
     ])
   })
 
   it('returns [] for a bare primitive like "number"', () => {
-    assert.deepStrictEqual(parseTypeUnion('number'), [])
+    expect(parseTypeUnion('number')).toEqual([])
   })
 
   it('returns [] for undefined', () => {
-    assert.deepStrictEqual(parseTypeUnion(undefined), [])
+    expect(parseTypeUnion(undefined)).toEqual([])
   })
 
   it('returns [] for an empty string', () => {
-    assert.deepStrictEqual(parseTypeUnion(''), [])
+    expect(parseTypeUnion('')).toEqual([])
   })
 })
 
@@ -46,14 +42,12 @@ describe('groupByComponent', () => {
       },
     ]
     const result = groupByComponent(rawAttrs, [])
-    assert.ok(result['Dialog'])
-    assert.strictEqual(result['Dialog'].attributes[0].name, 'data-open')
-    assert.strictEqual(
-      result['Dialog'].attributes[0].description,
+    expect(result['Dialog']).toBeTruthy()
+    expect(result['Dialog'].attributes[0].name).toBe('data-open')
+    expect(result['Dialog'].attributes[0].description).toBe(
       'Present when open.',
     )
-    assert.strictEqual(
-      result['Dialog'].attributesSourceFile,
+    expect(result['Dialog'].attributesSourceFile).toBe(
       'packages/react/src/dialog/DialogDataAttributes.ts',
     )
   })
@@ -68,7 +62,7 @@ describe('groupByComponent', () => {
       },
     ]
     const result = groupByComponent(rawAttrs, [])
-    assert.deepStrictEqual(result['Combobox'].attributes[0].values, [
+    expect(result['Combobox'].attributes[0].values).toEqual([
       { value: 'top' },
       { value: 'bottom' },
     ])
@@ -84,12 +78,8 @@ describe('groupByComponent', () => {
       },
     ]
     const result = groupByComponent([], rawCssVars)
-    assert.strictEqual(
-      result['Combobox'].cssVariables[0].name,
-      '--anchor-width',
-    )
-    assert.strictEqual(
-      result['Combobox'].cssVarsSourceFile,
+    expect(result['Combobox'].cssVariables[0].name).toBe('--anchor-width')
+    expect(result['Combobox'].cssVarsSourceFile).toBe(
       'packages/react/src/combobox/ComboboxCssVars.ts',
     )
   })
@@ -105,8 +95,7 @@ describe('groupByComponent', () => {
       },
     ]
     const result = groupByComponent([], rawCssVars)
-    assert.strictEqual(
-      result['Dialog'].cssVariables[0].description,
+    expect(result['Dialog'].cssVariables[0].description).toBe(
       'How many dialogs are nested. (number)',
     )
   })
@@ -127,12 +116,11 @@ describe('groupByComponent', () => {
       },
     ]
     const result = groupByComponent(rawAttrs, rawCssVars)
-    assert.strictEqual(result['Dialog'].attributes.length, 1)
-    assert.strictEqual(result['Dialog'].cssVariables.length, 1)
-    assert.strictEqual(
-      result['Dialog'].attributesSourceFile,
+    expect(result['Dialog'].attributes.length).toBe(1)
+    expect(result['Dialog'].cssVariables.length).toBe(1)
+    expect(result['Dialog'].attributesSourceFile).toBe(
       'DialogDataAttributes.ts',
     )
-    assert.strictEqual(result['Dialog'].cssVarsSourceFile, 'DialogCssVars.ts')
+    expect(result['Dialog'].cssVarsSourceFile).toBe('DialogCssVars.ts')
   })
 })

@@ -1,24 +1,17 @@
-import * as assert from 'assert'
 import * as fs from 'fs'
-import { after, describe, it } from 'node:test'
-import {
-  deriveComponentName,
-  parseEnumFile,
-  parseSharedEnums,
-} from './parse.js'
-import { makeTmpDir, writeFile } from './test-helpers.js'
+import { afterAll, describe, expect, it, vi } from 'vitest'
+import { deriveComponentName, parseEnumFile, parseSharedEnums } from './parse'
+import { makeTmpDir, writeFile } from './test-helpers'
 
 describe('deriveComponentName', () => {
   it('strips DataAttributes.ts suffix', () => {
-    assert.strictEqual(
+    expect(
       deriveComponentName('/some/path/ComboboxPopupDataAttributes.ts'),
-      'ComboboxPopup',
-    )
+    ).toBe('ComboboxPopup')
   })
 
   it('strips CssVars.ts suffix', () => {
-    assert.strictEqual(
-      deriveComponentName('/some/path/DialogPopupCssVars.ts'),
+    expect(deriveComponentName('/some/path/DialogPopupCssVars.ts')).toBe(
       'DialogPopup',
     )
   })
@@ -26,7 +19,7 @@ describe('deriveComponentName', () => {
 
 describe('parseEnumFile', () => {
   const tmpRoot = makeTmpDir()
-  after(() => fs.rmSync(tmpRoot, { recursive: true, force: true }))
+  afterAll(() => fs.rmSync(tmpRoot, { recursive: true, force: true }))
 
   it('extracts direct string literal members', () => {
     const filePath = writeFile(
@@ -40,13 +33,10 @@ describe('parseEnumFile', () => {
 }`,
     )
     const results = parseEnumFile(filePath, tmpRoot, new Map())
-    assert.strictEqual(results.length, 1)
-    assert.strictEqual(results[0].value, 'data-empty')
-    assert.strictEqual(
-      results[0].description,
-      'Present when the items list is empty.',
-    )
-    assert.strictEqual(results[0].component, 'ComboboxPopup')
+    expect(results.length).toBe(1)
+    expect(results[0].value).toBe('data-empty')
+    expect(results[0].description).toBe('Present when the items list is empty.')
+    expect(results[0].component).toBe('ComboboxPopup')
   })
 
   it('resolves property-access members via sharedValues', () => {
@@ -59,10 +49,11 @@ describe('parseEnumFile', () => {
     )
     const shared = new Map([['CommonPopupDataAttributes.open', 'data-open']])
     const results = parseEnumFile(filePath, tmpRoot, shared)
-    assert.strictEqual(results[0].value, 'data-open')
+    expect(results[0].value).toBe('data-open')
   })
 
   it('skips members that cannot be resolved', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const filePath = writeFile(
       tmpRoot,
       'UnknownDataAttributes.ts',
@@ -71,7 +62,8 @@ describe('parseEnumFile', () => {
 }`,
     )
     const results = parseEnumFile(filePath, tmpRoot, new Map())
-    assert.strictEqual(results.length, 0)
+    expect(results.length).toBe(0)
+    warn.mockRestore()
   })
 
   it('extracts @type union and stores it as rawType', () => {
@@ -87,7 +79,7 @@ describe('parseEnumFile', () => {
 }`,
     )
     const results = parseEnumFile(filePath, tmpRoot, new Map())
-    assert.strictEqual(results[0].rawType, `'top' | 'bottom'`)
+    expect(results[0].rawType).toBe(`'top' | 'bottom'`)
   })
 
   it('produces a relative sourceFile path', () => {
@@ -97,8 +89,7 @@ describe('parseEnumFile', () => {
       `export enum DialogDataAttributes { open = 'data-open' }`,
     )
     const results = parseEnumFile(filePath, tmpRoot, new Map())
-    assert.strictEqual(
-      results[0].sourceFile,
+    expect(results[0].sourceFile).toBe(
       'packages/react/src/dialog/DialogDataAttributes.ts',
     )
   })
@@ -111,17 +102,14 @@ describe('parseEnumFile', () => {
 export enum BarDataAttributes { b = 'data-b' }`,
     )
     const results = parseEnumFile(filePath, tmpRoot, new Map())
-    assert.strictEqual(results.length, 2)
-    assert.deepStrictEqual(
-      results.map((r) => r.value),
-      ['data-a', 'data-b'],
-    )
+    expect(results.length).toBe(2)
+    expect(results.map((r) => r.value)).toEqual(['data-a', 'data-b'])
   })
 })
 
 describe('parseSharedEnums', () => {
   const tmpRoot = makeTmpDir()
-  after(() => fs.rmSync(tmpRoot, { recursive: true, force: true }))
+  afterAll(() => fs.rmSync(tmpRoot, { recursive: true, force: true }))
 
   it('builds the shared map from utils/ and resolves chained references', async () => {
     writeFile(
@@ -143,13 +131,11 @@ describe('parseSharedEnums', () => {
 
     const map = await parseSharedEnums(tmpRoot)
 
-    assert.strictEqual(
-      map.get('TransitionStatusDataAttributes.startingStyle'),
+    expect(map.get('TransitionStatusDataAttributes.startingStyle')).toBe(
       'data-starting-style',
     )
-    assert.strictEqual(map.get('CommonPopupDataAttributes.open'), 'data-open')
-    assert.strictEqual(
-      map.get('CommonPopupDataAttributes.startingStyle'),
+    expect(map.get('CommonPopupDataAttributes.open')).toBe('data-open')
+    expect(map.get('CommonPopupDataAttributes.startingStyle')).toBe(
       'data-starting-style',
     )
   })
@@ -164,8 +150,7 @@ describe('parseSharedEnums', () => {
     )
 
     const map = await parseSharedEnums(tmpRoot)
-    assert.strictEqual(
-      map.get('ComboboxItemDataAttributes.highlighted'),
+    expect(map.get('ComboboxItemDataAttributes.highlighted')).toBe(
       'data-highlighted',
     )
   })

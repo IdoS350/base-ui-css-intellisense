@@ -1,6 +1,5 @@
-import * as assert from 'assert'
-import { describe, it } from 'node:test'
-import { extractJsDocDescription, extractJsDocType } from './jsdoc.js'
+import { describe, expect, it } from 'vitest'
+import { extractJsDocDescription, extractJsDocType } from './jsdoc'
 
 describe('extractJsDocDescription', () => {
   it('extracts a single-line description', () => {
@@ -9,8 +8,7 @@ describe('extractJsDocDescription', () => {
    * Present when the popup is open.
    */
   open = 'data-open'`
-    assert.strictEqual(
-      extractJsDocDescription(text),
+    expect(extractJsDocDescription(text)).toBe(
       'Present when the popup is open.',
     )
   })
@@ -22,10 +20,7 @@ describe('extractJsDocDescription', () => {
    * @type {'top' | 'bottom'}
    */
   side = 'data-side'`
-    assert.strictEqual(
-      extractJsDocDescription(text),
-      'Which side the popup is on.',
-    )
+    expect(extractJsDocDescription(text)).toBe('Which side the popup is on.')
   })
 
   it('joins multi-line descriptions', () => {
@@ -35,38 +30,31 @@ describe('extractJsDocDescription', () => {
    * Line two.
    */
   foo = 'data-foo'`
-    assert.strictEqual(extractJsDocDescription(text), 'Line one. Line two.')
+    expect(extractJsDocDescription(text)).toBe('Line one. Line two.')
   })
 
   it('returns undefined when there is no JSDoc', () => {
-    assert.strictEqual(
-      extractJsDocDescription(`  open = 'data-open'`),
-      undefined,
-    )
+    expect(extractJsDocDescription(`  open = 'data-open'`)).toBeUndefined()
   })
 
   it('returns undefined for an empty JSDoc block', () => {
-    assert.strictEqual(
+    expect(
       extractJsDocDescription(`  /** */\n  open = 'data-open'`),
-      undefined,
-    )
+    ).toBeUndefined()
   })
 })
 
 describe('extractJsDocType', () => {
   it('extracts a union type', () => {
     const text = `/** @type {'top' | 'bottom' | 'left' | 'right'} */`
-    assert.strictEqual(
-      extractJsDocType(text),
-      `'top' | 'bottom' | 'left' | 'right'`,
-    )
+    expect(extractJsDocType(text)).toBe(`'top' | 'bottom' | 'left' | 'right'`)
   })
 
   it('extracts a primitive type', () => {
-    assert.strictEqual(extractJsDocType(`/** @type {number} */`), 'number')
+    expect(extractJsDocType(`/** @type {number} */`)).toBe('number')
   })
 
   it('returns undefined when there is no @type tag', () => {
-    assert.strictEqual(extractJsDocType(`/** Present when open. */`), undefined)
+    expect(extractJsDocType(`/** Present when open. */`)).toBeUndefined()
   })
 })

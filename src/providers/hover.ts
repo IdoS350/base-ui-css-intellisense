@@ -1,9 +1,7 @@
 import * as vscode from 'vscode'
-import { findLastUnclosedBracket } from '../util/context.js'
-import { buildHoverDocs } from '../util/hover-docs.js'
-import type { AttributeIndex } from './completion.js'
-
-export { buildHoverDocs } from '../util/hover-docs.js'
+import { findLastUnclosedBracket } from '../util/context'
+import { buildHoverDocs } from '../util/hover-docs'
+import type { AttributeIndex } from './completion'
 
 const ATTR_NAME_REGEX = /data-[\w-]+/
 

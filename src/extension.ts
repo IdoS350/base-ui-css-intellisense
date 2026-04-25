@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
-import { loadData } from './data/loader.js'
-import { BaseUiCompletionProvider } from './providers/completion.js'
-import { BaseUiHoverProvider } from './providers/hover.js'
+import { loadData } from './data/loader'
+import { BaseUiCompletionProvider } from './providers/completion'
+import { BaseUiHoverProvider } from './providers/hover'
 
 // `[` triggers completion in scss/less but the built-in CSS language server
 // intercepts it in plain .css files. Extensions like Tailwind CSS IntelliSense

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import type { BaseUiData, CssVariable, DataAttribute } from '../data/types.js'
-import { detectContext } from '../util/context.js'
+import type { BaseUiData, CssVariable, DataAttribute } from '../data/types'
+import { detectContext } from '../util/context'
 
 const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
 

@@ -1,13 +1,9 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import type { BaseUiData } from '../../src/data/types.js'
-import {
-  parseCssVarFiles,
-  parseDataAttrFiles,
-  parseSharedEnums,
-} from './parse.js'
-import { readVersion, validateRepo } from './repo.js'
-import { groupByComponent } from './transform.js'
+import type { BaseUiData } from '../../src/data/types'
+import { parseCssVarFiles, parseDataAttrFiles, parseSharedEnums } from './parse'
+import { readVersion, validateRepo } from './repo'
+import { groupByComponent } from './transform'
 
 const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
 
