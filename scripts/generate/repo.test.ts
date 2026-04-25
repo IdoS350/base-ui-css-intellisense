@@ -1,8 +1,8 @@
 import * as assert from 'assert'
 import * as fs from 'fs'
 import { after, describe, it } from 'node:test'
-import { makeTmpDir, writeFile } from './test-helpers.js'
 import { validateRepo } from './repo.js'
+import { makeTmpDir, writeFile } from './test-helpers.js'
 
 describe('validateRepo', () => {
   const tmpRoot = makeTmpDir()

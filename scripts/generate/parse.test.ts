@@ -1,8 +1,12 @@
 import * as assert from 'assert'
 import * as fs from 'fs'
 import { after, describe, it } from 'node:test'
+import {
+  deriveComponentName,
+  parseEnumFile,
+  parseSharedEnums,
+} from './parse.js'
 import { makeTmpDir, writeFile } from './test-helpers.js'
-import { deriveComponentName, parseEnumFile, parseSharedEnums } from './parse.js'
 
 describe('deriveComponentName', () => {
   it('strips DataAttributes.ts suffix', () => {
