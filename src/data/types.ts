@@ -14,6 +14,8 @@ export interface CssVariable {
   /** Full variable name, e.g. "--anchor-width" */
   name: string
   description?: string
+  /** Raw TypeScript type, e.g. "number", "CSS length" */
+  type?: string
 }
 
 export interface ComponentData {

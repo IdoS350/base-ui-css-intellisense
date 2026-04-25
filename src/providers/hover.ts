@@ -1,14 +1,28 @@
 import * as vscode from 'vscode'
 import { findLastUnclosedBracket } from '../util/context'
-import { buildHoverDocs } from '../util/hover-docs'
-import type { AttributeIndex } from './completion'
+import { buildCssVarHoverDocs, buildHoverDocs } from '../util/hover-docs'
+import type { AttributeIndex, CssVarIndex } from './completion'
 
 const ATTR_NAME_REGEX = /data-[\w-]+/
+const CSS_VAR_REGEX = /--[\w-]+/
 
 export class BaseUiHoverProvider implements vscode.HoverProvider {
-  constructor(private readonly attributeByName: Map<string, AttributeIndex>) {}
+  constructor(
+    private readonly attributeByName: Map<string, AttributeIndex>,
+    private readonly cssVarByName: Map<string, CssVarIndex>,
+  ) {}
 
   provideHover(
+    document: vscode.TextDocument,
+    position: vscode.Position,
+  ): vscode.Hover | undefined {
+    return (
+      this.tryAttrHover(document, position) ??
+      this.tryCssVarHover(document, position)
+    )
+  }
+
+  private tryAttrHover(
     document: vscode.TextDocument,
     position: vscode.Position,
   ): vscode.Hover | undefined {
@@ -23,6 +37,23 @@ export class BaseUiHoverProvider implements vscode.HoverProvider {
 
     return new vscode.Hover(
       new vscode.MarkdownString(buildHoverDocs(entry)),
+      range,
+    )
+  }
+
+  private tryCssVarHover(
+    document: vscode.TextDocument,
+    position: vscode.Position,
+  ): vscode.Hover | undefined {
+    const range = document.getWordRangeAtPosition(position, CSS_VAR_REGEX)
+    if (!range) return undefined
+
+    const word = document.getText(range)
+    const entry = this.cssVarByName.get(word)
+    if (!entry) return undefined
+
+    return new vscode.Hover(
+      new vscode.MarkdownString(buildCssVarHoverDocs(entry)),
       range,
     )
   }

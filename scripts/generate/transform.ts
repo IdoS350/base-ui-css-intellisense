@@ -33,13 +33,11 @@ function toAttribute(item: ParsedMember): DataAttribute {
 }
 
 function toCssVar(item: ParsedMember): CssVariable {
-  const description = item.rawType
-    ? item.description
-      ? `${item.description} (${item.rawType})`
-      : item.rawType
-    : item.description
-
-  return { name: item.value, description }
+  return {
+    name: item.value,
+    description: item.description,
+    type: item.rawType,
+  }
 }
 
 export function groupByComponent(

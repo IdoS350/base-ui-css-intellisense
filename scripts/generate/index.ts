@@ -9,6 +9,7 @@ const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
 
 interface CssVarEntry {
   description?: string
+  type?: string
   components: string[]
   sourceFile?: string
 }
@@ -26,6 +27,7 @@ function generateCssCustomData(data: BaseUiData): object {
       } else {
         varMap.set(cssVar.name, {
           description: cssVar.description,
+          type: cssVar.type,
           components: [componentName],
           sourceFile: componentData.cssVarsSourceFile,
         })
@@ -44,6 +46,7 @@ function generateCssCustomData(data: BaseUiData): object {
 function buildCssVarDescription(entry: CssVarEntry): string {
   const parts: string[] = []
   if (entry.description) parts.push(entry.description)
+  if (entry.type) parts.push(`**Type:** \`${entry.type}\``)
   parts.push(`**Used by:** ${entry.components.join(', ')}`)
   if (entry.sourceFile) {
     parts.push(`[View source on GitHub](${BASE_UI_GITHUB}/${entry.sourceFile})`)

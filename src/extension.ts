@@ -17,6 +17,7 @@ export function activate(context: vscode.ExtensionContext): void {
   const completionProvider = new BaseUiCompletionProvider(data)
   const hoverProvider = new BaseUiHoverProvider(
     completionProvider.attributeByName,
+    completionProvider.cssVarByName,
   )
 
   const allLanguages = [...CSS_LIKE_LANGUAGES, ...SCSS_LESS_LANGUAGES]

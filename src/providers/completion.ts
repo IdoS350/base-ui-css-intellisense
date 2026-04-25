@@ -20,6 +20,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private readonly attributeIndex: AttributeIndex[]
   readonly attributeByName: Map<string, AttributeIndex>
   private readonly cssVarIndex: CssVarIndex[]
+  readonly cssVarByName: Map<string, CssVarIndex>
 
   constructor(data: BaseUiData) {
     const attrSeen = new Map<string, AttributeIndex>()
@@ -64,6 +65,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
     }
 
     this.cssVarIndex = [...cssVarSeen.values()]
+    this.cssVarByName = cssVarSeen
   }
 
   provideCompletionItems(
@@ -186,6 +188,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
     const { cssVar, components, sourceFile } = entry
 
     if (cssVar.description) md.appendMarkdown(`${cssVar.description}\n\n`)
+    if (cssVar.type) md.appendMarkdown(`**Type:** \`${cssVar.type}\`\n\n`)
     md.appendMarkdown(`**Used by:** ${components.join(', ')}\n\n`)
     if (sourceFile) {
       md.appendMarkdown(

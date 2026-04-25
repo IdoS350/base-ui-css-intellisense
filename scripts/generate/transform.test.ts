@@ -84,7 +84,7 @@ describe('groupByComponent', () => {
     )
   })
 
-  it('appends rawType to css var description in parens', () => {
+  it('stores rawType as a separate type field on css vars', () => {
     const rawCssVars = [
       {
         value: '--nested-dialogs',
@@ -96,8 +96,9 @@ describe('groupByComponent', () => {
     ]
     const result = groupByComponent([], rawCssVars)
     expect(result['Dialog'].cssVariables[0].description).toBe(
-      'How many dialogs are nested. (number)',
+      'How many dialogs are nested.',
     )
+    expect(result['Dialog'].cssVariables[0].type).toBe('number')
   })
 
   it('merges attributes and css vars for the same component', () => {
