@@ -10,7 +10,7 @@ export interface AttributeIndex {
   sourceFile?: string
 }
 
-interface CssVarIndex {
+export interface CssVarIndex {
   cssVar: CssVariable
   components: string[]
   sourceFile?: string
