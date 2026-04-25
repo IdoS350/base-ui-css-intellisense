@@ -1,40 +1,39 @@
-import assert from 'node:assert/strict'
-import { describe, it } from 'node:test'
-import { detectFromPrefix } from './context.js'
+import { describe, expect, it } from 'vitest'
+import { detectFromPrefix } from './context'
 
 describe('detectFromPrefix', () => {
   // Attribute name
   it('empty bracket', () =>
-    assert.deepEqual(detectFromPrefix('.foo['), {
+    expect(detectFromPrefix('.foo[')).toEqual({
       kind: 'attribute-name',
       prefix: '',
     }))
   it('partial data-', () =>
-    assert.deepEqual(detectFromPrefix('.foo[data-'), {
+    expect(detectFromPrefix('.foo[data-')).toEqual({
       kind: 'attribute-name',
       prefix: 'data-',
     }))
   it('full attr name', () =>
-    assert.deepEqual(detectFromPrefix('.foo[data-side'), {
+    expect(detectFromPrefix('.foo[data-side')).toEqual({
       kind: 'attribute-name',
       prefix: 'data-side',
     }))
 
   // Attribute value — double quotes
   it('value, no quote', () =>
-    assert.deepEqual(detectFromPrefix('[data-side='), {
+    expect(detectFromPrefix('[data-side=')).toEqual({
       kind: 'attribute-value',
       attribute: 'data-side',
       prefix: '',
     }))
   it('value, open double quote', () =>
-    assert.deepEqual(detectFromPrefix('[data-side="'), {
+    expect(detectFromPrefix('[data-side="')).toEqual({
       kind: 'attribute-value',
       attribute: 'data-side',
       prefix: '',
     }))
   it('value, partial double quote', () =>
-    assert.deepEqual(detectFromPrefix('[data-side="to'), {
+    expect(detectFromPrefix('[data-side="to')).toEqual({
       kind: 'attribute-value',
       attribute: 'data-side',
       prefix: 'to',
@@ -42,13 +41,13 @@ describe('detectFromPrefix', () => {
 
   // Attribute value — single quotes
   it('value, open single quote', () =>
-    assert.deepEqual(detectFromPrefix("[data-side='"), {
+    expect(detectFromPrefix("[data-side='")).toEqual({
       kind: 'attribute-value',
       attribute: 'data-side',
       prefix: '',
     }))
   it('value, partial single quote', () =>
-    assert.deepEqual(detectFromPrefix("[data-side='to"), {
+    expect(detectFromPrefix("[data-side='to")).toEqual({
       kind: 'attribute-value',
       attribute: 'data-side',
       prefix: 'to',
@@ -56,46 +55,46 @@ describe('detectFromPrefix', () => {
 
   // None cases
   it('closed bracket', () =>
-    assert.deepEqual(detectFromPrefix('[data-side="top"]'), { kind: 'none' }))
+    expect(detectFromPrefix('[data-side="top"]')).toEqual({ kind: 'none' }))
   it('non-data attribute', () =>
-    assert.deepEqual(detectFromPrefix('[aria-'), { kind: 'none' }))
+    expect(detectFromPrefix('[aria-')).toEqual({ kind: 'none' }))
 
   // CSS variables
   it('var( open', () =>
-    assert.deepEqual(detectFromPrefix('color: var('), {
+    expect(detectFromPrefix('color: var(')).toEqual({
       kind: 'css-variable',
       prefix: '',
     }))
   it('var(-- open', () =>
-    assert.deepEqual(detectFromPrefix('color: var(--'), {
+    expect(detectFromPrefix('color: var(--')).toEqual({
       kind: 'css-variable',
       prefix: '--',
     }))
   it('var(-- partial name', () =>
-    assert.deepEqual(detectFromPrefix('color: var(--accordion'), {
+    expect(detectFromPrefix('color: var(--accordion')).toEqual({
       kind: 'css-variable',
       prefix: '--accordion',
     }))
   it('var() closed', () =>
-    assert.deepEqual(detectFromPrefix('color: var(--accordion-panel-height)'), {
+    expect(detectFromPrefix('color: var(--accordion-panel-height)')).toEqual({
       kind: 'none',
     }))
 
   // Structural
   it('chained selectors', () =>
-    assert.deepEqual(detectFromPrefix('[data-open][data-'), {
+    expect(detectFromPrefix('[data-open][data-')).toEqual({
       kind: 'attribute-name',
       prefix: 'data-',
     }))
   it(':not() wrapping', () =>
-    assert.deepEqual(detectFromPrefix(':not([data-'), {
+    expect(detectFromPrefix(':not([data-')).toEqual({
       kind: 'attribute-name',
       prefix: 'data-',
     }))
 
   // Multiline (joined with newline as detectContext does)
   it('bracket on previous line', () =>
-    assert.deepEqual(detectFromPrefix('[\n  data-side="to'), {
+    expect(detectFromPrefix('[\n  data-side="to')).toEqual({
       kind: 'attribute-value',
       attribute: 'data-side',
       prefix: 'to',

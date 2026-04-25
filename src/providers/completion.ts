@@ -1,16 +1,16 @@
 import * as vscode from 'vscode'
-import type { BaseUiData, CssVariable, DataAttribute } from '../data/types.js'
-import { detectContext } from '../util/context.js'
+import type { BaseUiData, CssVariable, DataAttribute } from '../data/types'
+import { detectContext } from '../util/context'
 
 const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
 
-interface AttributeIndex {
+export interface AttributeIndex {
   attribute: DataAttribute
   components: string[]
   sourceFile?: string
 }
 
-interface CssVarIndex {
+export interface CssVarIndex {
   cssVar: CssVariable
   components: string[]
   sourceFile?: string
@@ -18,7 +18,7 @@ interface CssVarIndex {
 
 export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private readonly attributeIndex: AttributeIndex[]
-  private readonly attributeByName: Map<string, AttributeIndex>
+  readonly attributeByName: Map<string, AttributeIndex>
   private readonly cssVarIndex: CssVarIndex[]
 
   constructor(data: BaseUiData) {
@@ -80,7 +80,11 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
       case 'attribute-name':
         return this.attributeNameCompletions(ctx.prefix, position)
       case 'attribute-value':
-        return this.attributeValueCompletions(ctx.attribute, ctx.prefix, position)
+        return this.attributeValueCompletions(
+          ctx.attribute,
+          ctx.prefix,
+          position,
+        )
       case 'css-variable':
         return this.cssVariableCompletions(ctx.prefix, position)
       case 'none':

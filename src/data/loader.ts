@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
-import type { BaseUiData } from './types.js'
+import type { BaseUiData } from './types'
 
 let cached: BaseUiData | null = null
 

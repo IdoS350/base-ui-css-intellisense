@@ -2,8 +2,8 @@ import type {
   ComponentData,
   CssVariable,
   DataAttribute,
-} from '../../src/data/types.js'
-import type { ParsedMember } from './types.js'
+} from '../../src/data/types'
+import type { ParsedMember } from './types'
 
 export function parseTypeUnion(rawType?: string): { value: string }[] {
   if (!rawType) return []
