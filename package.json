@@ -1,13 +1,32 @@
 {
   "name": "base-ui-css-intellisense",
   "displayName": "Base UI CSS IntelliSense",
-  "description": "Autocomplete and hover docs for Base UI data attributes and CSS variables",
-  "version": "0.0.1",
+  "description": "Autocomplete and hover docs for Base UI data attributes and CSS variables in CSS, SCSS, and Less files.",
+  "version": "0.1.0",
+  "publisher": "<your-publisher-id>",
+  "license": "MIT",
+  "icon": "assets/icon-128x128.png",
+  "homepage": "https://github.com/IdoS350/base-ui-css-intellisense",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IdoS350/base-ui-css-intellisense"
+  },
+  "bugs": {
+    "url": "https://github.com/IdoS350/base-ui-css-intellisense/issues"
+  },
+  "keywords": [
+    "base-ui",
+    "css",
+    "autocomplete",
+    "intellisense",
+    "data-attributes"
+  ],
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Snippets"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -22,6 +41,8 @@
     "build": "node scripts/build.mjs",
     "watch": "node scripts/build.mjs --watch",
     "package": "vsce package",
+    "publish:vsce": "vsce publish",
+    "publish:ovsx": "ovsx publish $(ls *.vsix | head -1) -p $OVSX_TOKEN",
     "generate": "tsx scripts/generate/index.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
