@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { IndexManager } from './component-detection/index-manager'
 import { loadData } from './data/loader'
 import { BaseUiCompletionProvider } from './providers/completion'
 import { BaseUiHoverProvider } from './providers/hover'
@@ -13,6 +14,14 @@ const TRIGGER_CHARACTERS = ['[', '-', '"', "'"]
 const TRIGGER_CHARACTERS_CSS = ['-', '"', "'"]
 
 export function activate(context: vscode.ExtensionContext): void {
+  const resolverNames = vscode.workspace
+    .getConfiguration('baseUiIntelliSense')
+    .get<string[]>('customResolvers', [])
+
+  const indexManager = new IndexManager(resolverNames)
+  indexManager.register(context)
+  context.subscriptions.push(indexManager)
+
   const data = loadData(context)
   const completionProvider = new BaseUiCompletionProvider(data)
   const hoverProvider = new BaseUiHoverProvider(
