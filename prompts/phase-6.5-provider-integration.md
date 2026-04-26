@@ -21,7 +21,12 @@ Add an optional field to every non-`none` variant in `src/util/context.ts`:
 ```ts
 export type CompletionContext =
   | { kind: 'attribute-name'; prefix: string; selectorScope: string | null }
-  | { kind: 'attribute-value'; attribute: string; prefix: string; selectorScope: string | null }
+  | {
+      kind: 'attribute-value'
+      attribute: string
+      prefix: string
+      selectorScope: string | null
+    }
   | { kind: 'css-variable'; prefix: string; selectorScope: string | null }
   | { kind: 'none' }
 ```
@@ -46,15 +51,15 @@ Scan backwards through `prefix` to find the innermost CSS rule's selector:
 
 Examples:
 
-| prefix (truncated to selector + `{`)      | Expected scope |
-| :---------------------------------------- | :------------- |
-| `.root {`                                 | `"root"`       |
-| `.popup-root {`                           | `"popup-root"` |
-| `.root:hover {`                           | `"root"`       |
-| `.root, .popup {`                         | `"popup"`      |
-| `.root .child {`                          | `"child"`      |
-| `div {`                                   | `null`         |
-| (no `{` found)                            | `null`         |
+| prefix (truncated to selector + `{`) | Expected scope |
+| :----------------------------------- | :------------- |
+| `.root {`                            | `"root"`       |
+| `.popup-root {`                      | `"popup-root"` |
+| `.root:hover {`                      | `"root"`       |
+| `.root, .popup {`                    | `"popup"`      |
+| `.root .child {`                     | `"child"`      |
+| `div {`                              | `null`         |
+| (no `{` found)                       | `null`         |
 
 Update `detectFromPrefix` to call `detectSelectorScope` and attach the result to every returned context (except `none`).
 

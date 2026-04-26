@@ -118,7 +118,11 @@ export class WorkerClient {
       signal.addEventListener('abort', onAbort, { once: true })
       this.worker.once('message', onMessage)
 
-      const req: WorkerRequest = { cssSelectors, bridgeFileContents, resolverNames }
+      const req: WorkerRequest = {
+        cssSelectors,
+        bridgeFileContents,
+        resolverNames,
+      }
       this.worker.postMessage(req)
     })
   }
