@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "publisher": "idos",
   "license": "MIT",
-  "icon": "assets/icon-full-res.png",
+  "icon": "assets/icon.png",
   "homepage": "https://github.com/IdoS350/base-ui-css-intellisense",
   "repository": {
     "type": "git",

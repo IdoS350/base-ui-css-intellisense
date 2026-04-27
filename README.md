@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon-full-res.png" width="256" />
+  <img src="assets/icon.png" width="196" />
   <h1 align="center">Base UI CSS IntelliSense</h1>
 </p>
 
