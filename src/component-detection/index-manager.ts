@@ -3,8 +3,6 @@ import { SelectorIndex, buildSelectorIndex } from './ast-analyzer'
 import { findBridgeFiles } from './bridge-finder'
 import { extractClassSelectors } from './css-extractor'
 
-export { SelectorIndex }
-
 export class IndexManager {
   private readonly cache = new Map<string, SelectorIndex>()
   private readonly pendingAbort = new Map<string, AbortController>()
