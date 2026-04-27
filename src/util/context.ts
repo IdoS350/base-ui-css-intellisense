@@ -1,9 +1,14 @@
 import * as vscode from 'vscode'
 
 export type CompletionContext =
-  | { kind: 'attribute-name'; prefix: string }
-  | { kind: 'attribute-value'; attribute: string; prefix: string }
-  | { kind: 'css-variable'; prefix: string }
+  | { kind: 'attribute-name'; prefix: string; selectorScope: string | null }
+  | {
+      kind: 'attribute-value'
+      attribute: string
+      prefix: string
+      selectorScope: string | null
+    }
+  | { kind: 'css-variable'; prefix: string; selectorScope: string | null }
   | { kind: 'none' }
 
 export function detectContext(
@@ -26,11 +31,35 @@ export function detectContext(
   return detectFromPrefix(lookbackLines.join('\n'))
 }
 
+export function detectSelectorScope(prefix: string): string | null {
+  let depth = 0
+  let selectorEnd = -1
+  for (let i = prefix.length - 1; i >= 0; i--) {
+    if (prefix[i] === '}') {
+      depth++
+    } else if (prefix[i] === '{') {
+      if (depth === 0) {
+        selectorEnd = i
+        break
+      }
+      depth--
+    }
+  }
+  if (selectorEnd === -1) return null
+
+  const selectorText = prefix.slice(0, selectorEnd)
+  const matches = [...selectorText.matchAll(/\.(-?[_a-zA-Z][_a-zA-Z0-9-]*)/g)]
+  if (matches.length === 0) return null
+  return matches[matches.length - 1][1]
+}
+
 export function detectFromPrefix(prefix: string): CompletionContext {
+  const selectorScope = detectSelectorScope(prefix)
+
   // CSS variable: inside an unclosed var( call
   const varMatch = prefix.match(/var\(\s*(--[\w-]*)?\s*$/)
   if (varMatch) {
-    return { kind: 'css-variable', prefix: varMatch[1] ?? '' }
+    return { kind: 'css-variable', prefix: varMatch[1] ?? '', selectorScope }
   }
 
   const lastOpenBracket = findLastUnclosedBracket(prefix)
@@ -40,7 +69,7 @@ export function detectFromPrefix(prefix: string): CompletionContext {
 
   const eqIndex = insideBracket.indexOf('=')
   if (eqIndex !== -1) {
-    return detectValueContext(insideBracket, eqIndex)
+    return detectValueContext(insideBracket, eqIndex, selectorScope)
   }
 
   // Only fire for data-* attributes (or a prefix that could still become one).
@@ -52,7 +81,7 @@ export function detectFromPrefix(prefix: string): CompletionContext {
     return { kind: 'none' }
   }
 
-  return { kind: 'attribute-name', prefix: insideBracket }
+  return { kind: 'attribute-name', prefix: insideBracket, selectorScope }
 }
 
 export function findLastUnclosedBracket(prefix: string): number {
@@ -70,6 +99,7 @@ export function findLastUnclosedBracket(prefix: string): number {
 function detectValueContext(
   insideBracket: string,
   eqIndex: number,
+  selectorScope: string | null,
 ): CompletionContext {
   const attribute = insideBracket.slice(0, eqIndex).trim()
 
@@ -80,5 +110,10 @@ function detectValueContext(
   const quoteMatch = afterEq.match(/^(['"]?)(.*)/)
   const valuePrefix = quoteMatch ? quoteMatch[2] : afterEq
 
-  return { kind: 'attribute-value', attribute, prefix: valuePrefix }
+  return {
+    kind: 'attribute-value',
+    attribute,
+    prefix: valuePrefix,
+    selectorScope,
+  }
 }

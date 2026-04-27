@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { IndexManager } from '../component-detection/index-manager'
 import type { BaseUiData, CssVariable, DataAttribute } from '../data/types'
 import { detectContext } from '../util/context'
 
@@ -22,7 +23,10 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private readonly cssVarIndex: CssVarIndex[]
   readonly cssVarByName: Map<string, CssVarIndex>
 
-  constructor(data: BaseUiData) {
+  constructor(
+    data: BaseUiData,
+    private readonly indexManager: IndexManager,
+  ) {
     const attrSeen = new Map<string, AttributeIndex>()
 
     for (const [componentName, componentData] of Object.entries(
@@ -68,19 +72,34 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
     this.cssVarByName = cssVarSeen
   }
 
-  provideCompletionItems(
+  async provideCompletionItems(
     document: vscode.TextDocument,
     position: vscode.Position,
-  ): vscode.CompletionItem[] | undefined {
+    token: vscode.CancellationToken,
+  ): Promise<vscode.CompletionItem[] | undefined> {
     const ctx = detectContext(document, position)
 
     console.log(
       `[base-ui] provideCompletionItems lang=${document.languageId} ctx=${JSON.stringify(ctx)}`,
     )
 
+    let scopeComponents: string[] = []
+    if (
+      ctx.kind !== 'none' &&
+      ctx.selectorScope !== null &&
+      /\.(css|scss|less)$/.test(document.uri.fsPath)
+    ) {
+      const index = await this.indexManager.getIndex(document.uri, token)
+      scopeComponents = index.get(ctx.selectorScope) ?? []
+    }
+
     switch (ctx.kind) {
       case 'attribute-name':
-        return this.attributeNameCompletions(ctx.prefix, position)
+        return this.attributeNameCompletions(
+          ctx.prefix,
+          position,
+          scopeComponents,
+        )
       case 'attribute-value':
         return this.attributeValueCompletions(
           ctx.attribute,
@@ -88,7 +107,11 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
           position,
         )
       case 'css-variable':
-        return this.cssVariableCompletions(ctx.prefix, position)
+        return this.cssVariableCompletions(
+          ctx.prefix,
+          position,
+          scopeComponents,
+        )
       case 'none':
         return undefined
     }
@@ -104,10 +127,16 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private attributeNameCompletions(
     prefix: string,
     position: vscode.Position,
+    scopeComponents: string[],
   ): vscode.CompletionItem[] {
     const range = this.prefixRange(prefix, position)
     return this.attributeIndex
       .filter((entry) => entry.attribute.name.startsWith(prefix))
+      .filter(
+        (entry) =>
+          scopeComponents.length === 0 ||
+          entry.components.some((c) => scopeComponents.includes(c)),
+      )
       .map((entry) => {
         const item = new vscode.CompletionItem(
           entry.attribute.name,
@@ -151,10 +180,16 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private cssVariableCompletions(
     prefix: string,
     position: vscode.Position,
+    scopeComponents: string[],
   ): vscode.CompletionItem[] {
     const range = this.prefixRange(prefix, position)
     return this.cssVarIndex
       .filter((entry) => entry.cssVar.name.startsWith(prefix))
+      .filter(
+        (entry) =>
+          scopeComponents.length === 0 ||
+          entry.components.some((c) => scopeComponents.includes(c)),
+      )
       .map((entry) => {
         const item = new vscode.CompletionItem(
           entry.cssVar.name,
