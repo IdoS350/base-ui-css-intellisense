@@ -61,7 +61,9 @@ export function extractCallMappings(
 
 ```ts
 export function resolveCalleeLocalName(
-  callee: import('@babel/types').Expression | import('@babel/types').V8IntrinsicIdentifier,
+  callee:
+    | import('@babel/types').Expression
+    | import('@babel/types').V8IntrinsicIdentifier,
 ): string | null
 ```
 
@@ -150,11 +152,11 @@ No mocking needed — all helpers are pure functions over AST nodes / strings.
 
 Parse call expressions, extract callee node, assert:
 
-| Callee source     | Expected       |
-| :---------------- | :------------- |
+| Callee source     | Expected           |
+| :---------------- | :----------------- |
 | `styleComponent(` | `"styleComponent"` |
-| `lib.withStyles(` | `"withStyles"` |
-| `(fn)()`          | `null`         |
+| `lib.withStyles(` | `"withStyles"`     |
+| `(fn)()`          | `null`             |
 
 ### `resolveArgAsComponent`
 
@@ -169,11 +171,11 @@ Build small alias maps and pass AST argument nodes:
 
 ### `resolveArgAsSelector`
 
-| Arg source      | selectors        | Expected   |
-| :-------------- | :--------------- | :--------- |
-| `styles.root`   | `["root"]`       | `"root"`   |
-| `styles.popup`  | `["root"]`       | `null`     |
-| `"root"`        | `["root"]`       | `"root"`   |
+| Arg source     | selectors  | Expected |
+| :------------- | :--------- | :------- |
+| `styles.root`  | `["root"]` | `"root"` |
+| `styles.popup` | `["root"]` | `null`   |
+| `"root"`       | `["root"]` | `"root"` |
 
 ### `extractCallMappings` (integration)
 
@@ -184,7 +186,13 @@ const src = `
 `
 const ast = parse(src, { plugins: ['typescript'], sourceType: 'module' })
 const aliasMap = extractAliasMap(ast)
-const pairs = extractCallMappings(ast, aliasMap, ['root'], ['styleComponent'], src)
+const pairs = extractCallMappings(
+  ast,
+  aliasMap,
+  ['root'],
+  ['styleComponent'],
+  src,
+)
 expect(pairs).toEqual([{ selector: 'root', componentName: 'Popover.Root' }])
 ```
 

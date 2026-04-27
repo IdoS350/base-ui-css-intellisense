@@ -1,5 +1,6 @@
 import { parse } from '@babel/parser'
 import type { File, JSXOpeningElement, StringLiteral } from '@babel/types'
+import { extractCallMappings } from './custom-resolver'
 
 export type SelectorIndex = Map<string, string[]>
 
@@ -73,8 +74,18 @@ function walk(
 export function buildSelectorIndex(
   cssSelectors: string[],
   bridgeFileContents: string[],
+  resolverNames?: string[],
 ): SelectorIndex {
   const indexSets = new Map<string, Set<string>>()
+
+  const addPair = (selector: string, componentName: string) => {
+    let set = indexSets.get(selector)
+    if (!set) {
+      set = new Set()
+      indexSets.set(selector, set)
+    }
+    set.add(componentName)
+  }
 
   for (const content of bridgeFileContents) {
     let ast: File
@@ -120,15 +131,22 @@ export function buildSelectorIndex(
 
       for (const selector of cssSelectors) {
         if (classNameContainsSelector(rawText, selector)) {
-          let set = indexSets.get(selector)
-          if (!set) {
-            set = new Set()
-            indexSets.set(selector, set)
-          }
-          set.add(componentName)
+          addPair(selector, componentName)
         }
       }
     })
+
+    if (resolverNames?.length) {
+      for (const pair of extractCallMappings(
+        ast,
+        aliasMap,
+        cssSelectors,
+        resolverNames,
+        content,
+      )) {
+        addPair(pair.selector, pair.componentName)
+      }
+    }
   }
 
   const result: SelectorIndex = new Map()
