@@ -30,8 +30,7 @@ export function resolveJsxName(
 ): string | null {
   const name = openingElement.name
   if (name.type === 'JSXIdentifier') {
-    const mapped = aliasMap.get(name.name)
-    return mapped !== undefined ? mapped : null
+    return aliasMap.get(name.name) ?? null
   }
   if (name.type === 'JSXMemberExpression') {
     const obj = name.object

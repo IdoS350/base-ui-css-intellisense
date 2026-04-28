@@ -127,6 +127,15 @@ describe('classNameContainsSelector', () => {
   it('template literal match', () => {
     expect(classNameContainsSelector('`root`', 'root')).toBe(true)
   })
+
+  it('multiple space-separated classes, match', () => {
+    expect(classNameContainsSelector('"root active"', 'root')).toBe(true)
+    expect(classNameContainsSelector('"root active"', 'active')).toBe(true)
+  })
+
+  it('multiple space-separated classes, no substring match', () => {
+    expect(classNameContainsSelector('"popup-root active"', 'root')).toBe(false)
+  })
 })
 
 describe('buildSelectorIndex', () => {
