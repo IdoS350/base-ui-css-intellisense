@@ -7,19 +7,19 @@ describe('detectFromPrefix', () => {
     expect(detectFromPrefix('.foo[')).toEqual({
       kind: 'attribute-name',
       prefix: '',
-      selectorScope: null,
+      selectorScope: 'foo',
     }))
   it('partial data-', () =>
     expect(detectFromPrefix('.foo[data-')).toEqual({
       kind: 'attribute-name',
       prefix: 'data-',
-      selectorScope: null,
+      selectorScope: 'foo',
     }))
   it('full attr name', () =>
     expect(detectFromPrefix('.foo[data-side')).toEqual({
       kind: 'attribute-name',
       prefix: 'data-side',
-      selectorScope: null,
+      selectorScope: 'foo',
     }))
 
   // Attribute value — double quotes
@@ -157,4 +157,10 @@ describe('detectSelectorScope', () => {
     expect(
       detectSelectorScope('.root {\n  .closed { color: red; }\n  [data-'),
     ).toBe('root'))
+  it('class before [ inside @layer block', () =>
+    expect(detectSelectorScope('@layer primitives {\n  .Input[')).toBe('Input'))
+  it('class before [ with partial attr inside @layer', () =>
+    expect(detectSelectorScope('@layer primitives {\n  .Input[data-')).toBe(
+      'Input',
+    ))
 })

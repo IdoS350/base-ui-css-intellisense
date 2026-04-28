@@ -21,7 +21,7 @@ export function detectContext(
 
   // Build oldest→newest so detectFromPrefix (which scans backwards) sees
   // currentPrefix last — i.e. as the "most recent" content.
-  const startLine = Math.max(0, position.line - 5)
+  const startLine = Math.max(0, position.line - 50)
   const lookbackLines: string[] = []
   for (let i = startLine; i < position.line; i++) {
     lookbackLines.push(document.lineAt(i).text)
@@ -45,6 +45,22 @@ export function detectSelectorScope(prefix: string): string | null {
       depth--
     }
   }
+
+  // Text after the innermost { (or the whole prefix if no { found)
+  const afterBrace = selectorEnd === -1 ? prefix : prefix.slice(selectorEnd + 1)
+
+  // If there's a class selector immediately before a [ with no { between
+  // them, the cursor is inside an attribute selector written on the selector
+  // itself (e.g. `@layer x { .Input[data-`), not inside a declaration block.
+  const lastBracket = afterBrace.lastIndexOf('[')
+  if (lastBracket !== -1) {
+    const beforeBracket = afterBrace.slice(0, lastBracket)
+    if (!beforeBracket.includes('{')) {
+      const ms = [...beforeBracket.matchAll(/\.(-?[_a-zA-Z][_a-zA-Z0-9-]*)/g)]
+      if (ms.length > 0) return ms[ms.length - 1][1]
+    }
+  }
+
   if (selectorEnd === -1) return null
 
   const selectorText = prefix.slice(0, selectorEnd)
