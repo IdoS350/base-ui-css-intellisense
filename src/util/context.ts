@@ -8,7 +8,12 @@ export type CompletionContext =
       prefix: string
       selectorScope: string | null
     }
-  | { kind: 'css-variable'; prefix: string; selectorScope: string | null }
+  | {
+      kind: 'css-variable'
+      prefix: string
+      selectorScope: string | null
+      needsVarWrapper: boolean
+    }
   | { kind: 'none' }
 
 export function detectContext(
@@ -72,10 +77,26 @@ export function detectSelectorScope(prefix: string): string | null {
 export function detectFromPrefix(prefix: string): CompletionContext {
   const selectorScope = detectSelectorScope(prefix)
 
-  // CSS variable: inside an unclosed var( call
+  // CSS variable: inside an unclosed `var(` call
   const varMatch = prefix.match(/var\(\s*(--[\w-]*)?\s*$/)
   if (varMatch) {
-    return { kind: 'css-variable', prefix: varMatch[1] ?? '', selectorScope }
+    return {
+      kind: 'css-variable',
+      prefix: varMatch[1] ?? '',
+      selectorScope,
+      needsVarWrapper: false,
+    }
+  }
+
+  // CSS variable: bare -- typed in a value position (e.g. `color: --`)
+  const bareVarMatch = prefix.match(/:\s*(--[\w-]*)$/)
+  if (bareVarMatch) {
+    return {
+      kind: 'css-variable',
+      prefix: bareVarMatch[1],
+      selectorScope,
+      needsVarWrapper: true,
+    }
   }
 
   const lastOpenBracket = findLastUnclosedBracket(prefix)

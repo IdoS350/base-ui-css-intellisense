@@ -67,28 +67,54 @@ describe('detectFromPrefix', () => {
   it('non-data attribute', () =>
     expect(detectFromPrefix('[aria-')).toEqual({ kind: 'none' }))
 
-  // CSS variables
+  // CSS variables — inside var()
   it('var( open', () =>
     expect(detectFromPrefix('color: var(')).toEqual({
       kind: 'css-variable',
       prefix: '',
       selectorScope: null,
+      needsVarWrapper: false,
     }))
   it('var(-- open', () =>
     expect(detectFromPrefix('color: var(--')).toEqual({
       kind: 'css-variable',
       prefix: '--',
       selectorScope: null,
+      needsVarWrapper: false,
     }))
   it('var(-- partial name', () =>
     expect(detectFromPrefix('color: var(--accordion')).toEqual({
       kind: 'css-variable',
       prefix: '--accordion',
       selectorScope: null,
+      needsVarWrapper: false,
     }))
   it('var() closed', () =>
     expect(detectFromPrefix('color: var(--accordion-panel-height)')).toEqual({
       kind: 'none',
+    }))
+
+  // CSS variables — bare -- without var()
+  it('bare -- after colon', () =>
+    expect(detectFromPrefix('color: --')).toEqual({
+      kind: 'css-variable',
+      prefix: '--',
+      selectorScope: null,
+      needsVarWrapper: true,
+    }))
+  it('bare -- partial name after colon', () =>
+    expect(detectFromPrefix('color: --accordion')).toEqual({
+      kind: 'css-variable',
+      prefix: '--accordion',
+      selectorScope: null,
+      needsVarWrapper: true,
+    }))
+  it('bare -- inside scoped rule', () =>
+    expect(detectFromPrefix('.root {\n  background: --')).toEqual({
+      kind: 'css-variable',
+      prefix: '--',
+      selectorScope: 'root',
+      needsVarWrapper: true,
     }))
 
   // Structural
@@ -126,6 +152,7 @@ describe('detectFromPrefix', () => {
       kind: 'css-variable',
       prefix: '--',
       selectorScope: 'popup-root',
+      needsVarWrapper: false,
     }))
   it('attribute-value inside scoped rule', () =>
     expect(detectFromPrefix('.root {\n  [data-side="')).toEqual({

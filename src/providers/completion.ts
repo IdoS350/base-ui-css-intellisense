@@ -111,6 +111,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
           ctx.prefix,
           position,
           scopeComponents,
+          ctx.needsVarWrapper,
         )
       case 'none':
         return undefined
@@ -181,6 +182,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
     prefix: string,
     position: vscode.Position,
     scopeComponents: string[],
+    needsVarWrapper: boolean,
   ): vscode.CompletionItem[] {
     const range = this.prefixRange(prefix, position)
     return this.cssVarIndex
@@ -200,6 +202,9 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
         item.sortText = `0_${entry.cssVar.name}`
         item.filterText = entry.cssVar.name
         item.range = range
+        if (needsVarWrapper) {
+          item.insertText = `var(${entry.cssVar.name})`
+        }
         return item
       })
   }
