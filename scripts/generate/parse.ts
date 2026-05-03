@@ -6,6 +6,25 @@ import { extractJsDocDescription, extractJsDocType } from './jsdoc'
 import type { ParsedMember, SharedValueMap } from './types'
 
 export function deriveComponentName(filePath: string): string {
+  const parts = filePath.replace(/\\/g, '/').split('/')
+  const srcIdx = parts.lastIndexOf('src')
+  if (srcIdx !== -1) {
+    // Directory segments between src/ and the filename encode the hierarchy,
+    // e.g. .../src/dialog/trigger/... → Dialog.Trigger
+    // Segments are kebab-case, so each word is capitalised individually:
+    // input-group → InputGroup, checkbox-group → CheckboxGroup
+    const dirs = parts.slice(srcIdx + 1, -1)
+    if (dirs.length > 0) {
+      return dirs
+        .map((s) =>
+          s
+            .split('-')
+            .map((w) => w[0].toUpperCase() + w.slice(1))
+            .join(''),
+        )
+        .join('.')
+    }
+  }
   const base = path.basename(filePath)
   return base.replace('DataAttributes.ts', '').replace('CssVars.ts', '')
 }
