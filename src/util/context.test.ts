@@ -190,4 +190,8 @@ describe('detectSelectorScope', () => {
     expect(detectSelectorScope('@layer primitives {\n  .Input[data-')).toBe(
       'Input',
     ))
+  it('preceding closed rule in lookback does not break bracket scope detection', () =>
+    expect(
+      detectSelectorScope('.Other {\n  color: red;\n}\n.Viewport[data-'),
+    ).toBe('Viewport'))
 })
