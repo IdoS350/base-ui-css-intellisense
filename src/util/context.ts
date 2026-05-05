@@ -60,8 +60,12 @@ export function detectSelectorScope(prefix: string): string | null {
   const lastBracket = afterBrace.lastIndexOf('[')
   if (lastBracket !== -1) {
     const beforeBracket = afterBrace.slice(0, lastBracket)
-    if (!beforeBracket.includes('{')) {
-      const ms = [...beforeBracket.matchAll(/\.(-?[_a-zA-Z][_a-zA-Z0-9-]*)/g)]
+    // Only look at text after the last `}`
+    const lastClose = beforeBracket.lastIndexOf('}')
+    const relevantBefore =
+      lastClose === -1 ? beforeBracket : beforeBracket.slice(lastClose + 1)
+    if (!relevantBefore.includes('{')) {
+      const ms = [...relevantBefore.matchAll(/\.(-?[_a-zA-Z][_a-zA-Z0-9-]*)/g)]
       if (ms.length > 0) return ms[ms.length - 1][1]
     }
   }

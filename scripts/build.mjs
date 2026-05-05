@@ -14,6 +14,15 @@ const ctx = await esbuild.context({
   minify: false,
 })
 
+await esbuild.build({
+  entryPoints: ['src/component-detection/parser-worker.ts'],
+  bundle: true,
+  platform: 'node',
+  format: 'cjs',
+  outfile: 'dist/parser-worker.js',
+  external: ['vscode'],
+})
+
 if (watch) {
   await ctx.watch()
   console.log('Watching...')

@@ -1,14 +1,18 @@
 import * as vscode from 'vscode'
-import { SelectorIndex, buildSelectorIndex } from './ast-analyzer'
+import { SelectorIndex } from './ast-analyzer'
 import { findBridgeFiles } from './bridge-finder'
 import { extractClassSelectors } from './css-extractor'
+import { WorkerClient } from './worker-client'
 
 export class IndexManager {
   private readonly cache = new Map<string, SelectorIndex>()
   private readonly pendingAbort = new Map<string, AbortController>()
   private readonly bridgeFilesByCss = new Map<string, string[]>()
 
-  constructor(private readonly resolverNames: string[]) {}
+  constructor(
+    private readonly resolverNames: string[],
+    private readonly workerClient: WorkerClient,
+  ) {}
 
   async getIndex(
     cssUri: vscode.Uri,
@@ -51,7 +55,12 @@ export class IndexManager {
         return this.cache.get(key) ?? new Map()
       }
 
-      const index = buildSelectorIndex(selectors, contents, this.resolverNames)
+      const index = await this.workerClient.run(
+        selectors,
+        contents,
+        this.resolverNames,
+        ac.signal,
+      )
 
       this.cache.set(key, index)
       this.bridgeFilesByCss.set(
