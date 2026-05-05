@@ -1,4 +1,7 @@
+import * as path from 'path'
 import * as vscode from 'vscode'
+import { IndexManager } from './component-detection/index-manager'
+import { WorkerClient } from './component-detection/worker-client'
 import { loadData } from './data/loader'
 import { BaseUiCompletionProvider } from './providers/completion'
 import { BaseUiHoverProvider } from './providers/hover'
@@ -13,11 +16,28 @@ const TRIGGER_CHARACTERS = ['[', '-', '"', "'"]
 const TRIGGER_CHARACTERS_CSS = ['-', '"', "'"]
 
 export function activate(context: vscode.ExtensionContext): void {
+  const resolverNames = vscode.workspace
+    .getConfiguration('baseUiIntelliSense')
+    .get<string[]>('customResolvers', [])
+
+  const workerPath = path.join(
+    context.extensionPath,
+    'dist',
+    'parser-worker.js',
+  )
+  const workerClient = new WorkerClient(workerPath)
+  context.subscriptions.push(workerClient)
+
+  const indexManager = new IndexManager(resolverNames, workerClient)
+  indexManager.register(context)
+  context.subscriptions.push(indexManager)
+
   const data = loadData(context)
-  const completionProvider = new BaseUiCompletionProvider(data)
+  const completionProvider = new BaseUiCompletionProvider(data, indexManager)
   const hoverProvider = new BaseUiHoverProvider(
     completionProvider.attributeByName,
     completionProvider.cssVarByName,
+    indexManager,
   )
 
   const allLanguages = [...CSS_LIKE_LANGUAGES, ...SCSS_LESS_LANGUAGES]

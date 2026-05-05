@@ -4,13 +4,45 @@ import { deriveComponentName, parseEnumFile, parseSharedEnums } from './parse'
 import { makeTmpDir, writeFile } from './test-helpers'
 
 describe('deriveComponentName', () => {
-  it('strips DataAttributes.ts suffix', () => {
+  it('uses path segments when src/ is present — two levels', () => {
+    expect(
+      deriveComponentName(
+        '/repo/packages/react/src/dialog/trigger/DialogTriggerDataAttributes.ts',
+      ),
+    ).toBe('Dialog.Trigger')
+  })
+
+  it('uses path segments when src/ is present — one level', () => {
+    expect(
+      deriveComponentName(
+        '/repo/packages/react/src/input/InputDataAttributes.ts',
+      ),
+    ).toBe('Input')
+  })
+
+  it('converts kebab-case segment to PascalCase — one level', () => {
+    expect(
+      deriveComponentName(
+        '/repo/packages/react/src/checkbox-group/CheckboxGroupDataAttributes.ts',
+      ),
+    ).toBe('CheckboxGroup')
+  })
+
+  it('converts kebab-case segment to PascalCase — two levels', () => {
+    expect(
+      deriveComponentName(
+        '/repo/packages/react/src/autocomplete/input-group/AutocompleteInputGroupDataAttributes.ts',
+      ),
+    ).toBe('Autocomplete.InputGroup')
+  })
+
+  it('falls back to filename strip when no src/ segment', () => {
     expect(
       deriveComponentName('/some/path/ComboboxPopupDataAttributes.ts'),
     ).toBe('ComboboxPopup')
   })
 
-  it('strips CssVars.ts suffix', () => {
+  it('falls back to filename strip for CssVars files without src/', () => {
     expect(deriveComponentName('/some/path/DialogPopupCssVars.ts')).toBe(
       'DialogPopup',
     )
@@ -24,7 +56,7 @@ describe('parseEnumFile', () => {
   it('extracts direct string literal members', () => {
     const filePath = writeFile(
       tmpRoot,
-      'ComboboxPopupDataAttributes.ts',
+      'packages/react/src/combobox/popup/ComboboxPopupDataAttributes.ts',
       `export enum ComboboxPopupDataAttributes {
   /**
    * Present when the items list is empty.
@@ -36,7 +68,7 @@ describe('parseEnumFile', () => {
     expect(results.length).toBe(1)
     expect(results[0].value).toBe('data-empty')
     expect(results[0].description).toBe('Present when the items list is empty.')
-    expect(results[0].component).toBe('ComboboxPopup')
+    expect(results[0].component).toBe('Combobox.Popup')
   })
 
   it('resolves property-access members via sharedValues', () => {

@@ -35,7 +35,20 @@
   "contributes": {
     "css.customData": [
       "./data/base-ui.css-data.json"
-    ]
+    ],
+    "configuration": {
+      "title": "Base UI CSS IntelliSense",
+      "properties": {
+        "baseUiIntelliSense.customResolvers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Function names whose call-site arguments are analyzed for Base UI component + className pairs (e.g. \"styleComponent\", \"withStyles\")."
+        }
+      }
+    }
   },
   "scripts": {
     "build": "node scripts/build.mjs",
@@ -50,6 +63,7 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "@babel/types": "^7.29.0",
     "@types/node": "^25.6.0",
     "@types/vscode": "1.85.0",
     "@vscode/vsce": "^3.9.1",
@@ -60,5 +74,8 @@
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.5"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.29.2"
   }
 }
