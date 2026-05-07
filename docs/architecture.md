@@ -29,13 +29,13 @@ base-ui-css-intellisense/
 │   │   ├── context.ts                  # Cursor context detection
 │   │   └── hover-docs.ts               # Hover markdown helpers
 │   └── component-detection/
-│       ├── bridge-finder.ts            # Phase 6.1 — finds bridge files
-│       ├── css-extractor.ts            # Phase 6.2a — extracts CSS class names
-│       ├── ast-analyzer.ts             # Phase 6.2b — builds SelectorIndex via AST
-│       ├── custom-resolver.ts          # Phase 6.3 — HOC/factory pattern support
-│       ├── index-manager.ts            # Phase 6.4 — caching & orchestration
-│       ├── worker-client.ts            # Phase 6.6 — IPC with worker thread
-│       └── parser-worker.ts            # Phase 6.6 — worker thread entry
+│       ├── bridge-finder.ts            # finds bridge files
+│       ├── css-extractor.ts            # extracts CSS class names
+│       ├── ast-analyzer.ts             # builds SelectorIndex via AST
+│       ├── custom-resolver.ts          # HOC/factory pattern support
+│       ├── index-manager.ts            # caching & orchestration
+│       ├── worker-client.ts            # IPC with worker thread
+│       └── parser-worker.ts            # worker thread entry
 ├── scripts/
 │   ├── build.mjs                       # esbuild configuration
 │   └── generate/
@@ -49,7 +49,6 @@ base-ui-css-intellisense/
 ├── data/
 │   ├── base-ui-attributes.json         # Programmatic data (generated, committed)
 │   └── base-ui.css-data.json           # VS Code custom data (generated, committed)
-├── prompts/                            # Design documents / LLM prompts per phase
 └── docs/                               # This directory
 ```
 
@@ -161,7 +160,7 @@ One user-facing setting in `package.json`:
 "baseUiIntelliSense.customResolvers": ["styleComponent", "withStyles"]
 ```
 
-When non-empty, the AST analyzer also scans `CallExpression` nodes whose callee matches one of these names. See [component-detection.md](./component-detection.md#phase-63--custom-resolver).
+When non-empty, the AST analyzer also scans `CallExpression` nodes whose callee matches one of these names. See [component-detection.md](./component-detection.md#custom-resolver).
 
 ---
 

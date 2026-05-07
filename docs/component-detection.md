@@ -12,17 +12,17 @@ The pipeline runs lazily (on first completion/hover request for a given CSS file
 CSS file being edited
     │
     ▼
-Phase 6.1 — Bridge Finder
+Bridge Finder
     Find all .ts/.tsx files that import both this CSS file and @base-ui/react.
     Result: bridge file URIs
     │
     ▼
-Phase 6.2a — CSS Extractor
+CSS Extractor
     Parse the CSS file to extract all class names (.root, .popup, …).
     Result: string[]
     │
     ▼
-Phase 6.2b — AST Analyzer  (runs in worker thread)
+AST Analyzer  (runs in worker thread)
     For each bridge file:
       - Parse with Babel (TypeScript + JSX plugins)
       - Build alias map: local import name → canonical Base UI name
@@ -31,28 +31,28 @@ Phase 6.2b — AST Analyzer  (runs in worker thread)
     Result: SelectorIndex  (Map<string, string[]>)
     │
     ▼
-Phase 6.3 — Custom Resolver  (part of worker, optional)
+Custom Resolver  (part of worker, optional)
     Also walk CallExpression nodes for user-configured HOC/factory function names.
     Merges pairs into the same SelectorIndex.
     │
     ▼
-Phase 6.4 — Index Manager
+Index Manager
     Orchestrates the above, manages the cache, and handles cancellation.
     Exposes: getIndex(cssUri, token): Promise<SelectorIndex>
     │
     ▼
-Phase 6.5 — Provider Integration
+Provider Integration
     Providers call getIndex, then filter completions/hovers by the detected scope.
     │
     ▼
-Phase 6.6 — Worker Thread
+Worker Thread
     AST parsing (Babel) runs in a Node.js worker thread.
     All VS Code API calls stay on the extension host thread.
 ```
 
 ---
 
-## Phase 6.1 — Bridge Finder (`src/component-detection/bridge-finder.ts`)
+## Bridge Finder (`src/component-detection/bridge-finder.ts`)
 
 **Goal:** given a CSS file URI, return the JS/TS files that are "bridges" — they import this CSS file and also import from `@base-ui/react`.
 
@@ -81,7 +81,7 @@ export function importsBaseUi(fileContent: string): boolean
 
 ---
 
-## Phase 6.2a — CSS Extractor (`src/component-detection/css-extractor.ts`)
+## CSS Extractor (`src/component-detection/css-extractor.ts`)
 
 Extracts all class selectors from the CSS file content using a single regex scan.
 
@@ -95,7 +95,7 @@ Example: for `.root { }` and `.popup-root { }` this returns `["root", "popup-roo
 
 ---
 
-## Phase 6.2b — AST Analyzer (`src/component-detection/ast-analyzer.ts`)
+## AST Analyzer (`src/component-detection/ast-analyzer.ts`)
 
 Builds the `SelectorIndex` from bridge file contents. This is the CPU-heavy step that runs in the worker thread.
 
@@ -127,7 +127,7 @@ export function buildSelectorIndex(
    - Get the raw source text of the className value:
      - `StringLiteral`: use `.value` directly.
      - `JSXExpressionContainer`: slice the source bytes from `val.start` to `val.end` — this covers `{styles.root}`, `{clsx(styles.root)}`, template literals, etc.
-   - For each CSS selector from Phase 6.2a, run `classNameContainsSelector()`.
+   - For each CSS selector from the CSS extractor, run `classNameContainsSelector()`.
 6. If a match is found, record `selector → componentName` in the index.
 
 **Word-boundary matching (`classNameContainsSelector`):**
@@ -146,7 +146,7 @@ This prevents `.root` from matching inside `"another-root"` while still matching
 
 ---
 
-## Phase 6.3 — Custom Resolver (`src/component-detection/custom-resolver.ts`)
+## Custom Resolver (`src/component-detection/custom-resolver.ts`)
 
 Handles HOC and factory patterns like `styleComponent(Popover.Root, styles.root)` that do not use a JSX `className` attribute.
 
@@ -162,14 +162,14 @@ Walk all `CallExpression` nodes. For each one whose callee name matches a config
 
 1. Iterate arguments (skipping spread elements).
 2. Try to resolve each argument as a **component**: check if it is an `Identifier` or `MemberExpression` that appears in the alias map.
-3. Try to resolve each argument as a **selector**: check if its raw source text contains a CSS class name (same word-boundary check as Phase 6.2b).
+3. Try to resolve each argument as a **selector**: check if its raw source text contains a CSS class name (same word-boundary check as the AST analyzer).
 4. If both a component and a selector are found, record the pair.
 
 No argument-index configuration is needed — the heuristic finds whichever argument satisfies each role first.
 
 ---
 
-## Phase 6.4 — Index Manager (`src/component-detection/index-manager.ts`)
+## Index Manager (`src/component-detection/index-manager.ts`)
 
 Orchestrates the pipeline and manages caching. The providers call only this class.
 
@@ -215,7 +215,7 @@ getIndex(cssUri, token)
 
 ---
 
-## Phase 6.5 — Provider Integration
+## Provider Integration
 
 The providers (`src/providers/completion.ts` and `src/providers/hover.ts`) call `indexManager.getIndex()` and use the result to filter suggestions.
 
@@ -239,7 +239,7 @@ If `scopeComponents` is empty (no component detected for this selector), the fil
 
 ---
 
-## Phase 6.6 — Worker Thread (`src/component-detection/parser-worker.ts`, `worker-client.ts`)
+## Worker Thread (`src/component-detection/parser-worker.ts`, `worker-client.ts`)
 
 Babel parsing is CPU-intensive. Running it on the extension host thread would block UI responsiveness. The worker thread handles all parsing; the extension host thread retains all VS Code API calls (file search, file reads).
 
