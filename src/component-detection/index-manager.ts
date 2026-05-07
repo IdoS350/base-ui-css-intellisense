@@ -12,6 +12,8 @@ export class IndexManager {
   constructor(
     private readonly resolverNames: string[],
     private readonly workerClient: WorkerClient,
+    private readonly packageName: string,
+    private readonly excludePatterns: string[],
   ) {}
 
   async getIndex(
@@ -29,7 +31,12 @@ export class IndexManager {
     }
 
     try {
-      const bridgeUris = await findBridgeFiles(cssUri, token)
+      const bridgeUris = await findBridgeFiles(
+        cssUri,
+        token,
+        this.packageName,
+        this.excludePatterns,
+      )
       if (token.isCancellationRequested || ac.signal.aborted) {
         return this.cache.get(key) ?? new Map()
       }

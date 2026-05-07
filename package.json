@@ -39,6 +39,43 @@
     "configuration": {
       "title": "Base UI CSS IntelliSense",
       "properties": {
+        "baseUiIntelliSense.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable Base UI CSS IntelliSense. Requires a window reload to take effect."
+        },
+        "baseUiIntelliSense.packageName": {
+          "type": "string",
+          "default": "@base-ui/react",
+          "description": "The import package name used to identify Base UI component files (e.g. a monorepo alias or fork name)."
+        },
+        "baseUiIntelliSense.excludePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/out/**",
+            "**/releases/**"
+          ],
+          "description": "Glob patterns to exclude when scanning for JS/TS bridge files."
+        },
+        "baseUiIntelliSense.languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "css",
+            "tailwindcss",
+            "postcss",
+            "scss",
+            "less"
+          ],
+          "description": "Language IDs to activate completions and hover documentation for."
+        },
         "baseUiIntelliSense.customResolvers": {
           "type": "array",
           "items": {

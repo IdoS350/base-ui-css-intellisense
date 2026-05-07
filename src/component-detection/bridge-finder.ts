@@ -1,8 +1,11 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
 
-export function importsBaseUi(fileContent: string): boolean {
-  return fileContent.includes('@base-ui/react')
+export function importsBaseUi(
+  fileContent: string,
+  packageName: string,
+): boolean {
+  return fileContent.includes(packageName)
 }
 
 function escapeRegex(str: string): string {
@@ -12,6 +15,8 @@ function escapeRegex(str: string): string {
 export async function findBridgeFiles(
   cssUri: vscode.Uri,
   token: vscode.CancellationToken,
+  packageName: string,
+  excludePatterns: string[],
 ): Promise<vscode.Uri[]> {
   if (token.isCancellationRequested) return []
 
@@ -22,10 +27,17 @@ export async function findBridgeFiles(
     '**/*.{ts,tsx,js,jsx}',
   )
 
+  const exclude =
+    excludePatterns.length === 0
+      ? undefined
+      : excludePatterns.length === 1
+        ? excludePatterns[0]
+        : `{${excludePatterns.join(',')}}`
+
   // TODO: explore the findTextIsFile() api
   const candidates = await vscode.workspace.findFiles(
     include,
-    '{**/node_modules,**/dist,**/out,**/releases}/**',
+    exclude,
     undefined,
     token,
   )
@@ -39,7 +51,7 @@ export async function findBridgeFiles(
     if (token.isCancellationRequested) return []
     const bytes = await vscode.workspace.fs.readFile(uri)
     const content = Buffer.from(bytes).toString('utf8')
-    if (importPattern.test(content) && importsBaseUi(content)) {
+    if (importPattern.test(content) && importsBaseUi(content, packageName)) {
       bridgeFiles.push(uri)
     }
   }

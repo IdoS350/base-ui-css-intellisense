@@ -16,9 +16,24 @@ const TRIGGER_CHARACTERS = ['[', '-', '"', "'"]
 const TRIGGER_CHARACTERS_CSS = ['-', '"', "'"]
 
 export function activate(context: vscode.ExtensionContext): void {
-  const resolverNames = vscode.workspace
-    .getConfiguration('baseUiIntelliSense')
-    .get<string[]>('customResolvers', [])
+  const config = vscode.workspace.getConfiguration('baseUiIntelliSense')
+
+  if (!config.get<boolean>('enable', true)) {
+    return
+  }
+
+  const resolverNames = config.get<string[]>('customResolvers', [])
+  const packageName = config.get<string>('packageName', '@base-ui/react')
+  const excludePatterns = config.get<string[]>('excludePatterns', [
+    '**/node_modules/**',
+    '**/dist/**',
+    '**/out/**',
+    '**/releases/**',
+  ])
+  const configLanguages = config.get<string[]>('languages', [
+    ...CSS_LIKE_LANGUAGES,
+    ...SCSS_LESS_LANGUAGES,
+  ])
 
   const workerPath = path.join(
     context.extensionPath,
@@ -28,7 +43,12 @@ export function activate(context: vscode.ExtensionContext): void {
   const workerClient = new WorkerClient(workerPath)
   context.subscriptions.push(workerClient)
 
-  const indexManager = new IndexManager(resolverNames, workerClient)
+  const indexManager = new IndexManager(
+    resolverNames,
+    workerClient,
+    packageName,
+    excludePatterns,
+  )
   indexManager.register(context)
   context.subscriptions.push(indexManager)
 
@@ -40,24 +60,41 @@ export function activate(context: vscode.ExtensionContext): void {
     indexManager,
   )
 
-  const allLanguages = [...CSS_LIKE_LANGUAGES, ...SCSS_LESS_LANGUAGES]
-
-  context.subscriptions.push(
-    vscode.languages.registerCompletionItemProvider(
-      CSS_LIKE_LANGUAGES.map((language) => ({ language })),
-      completionProvider,
-      ...TRIGGER_CHARACTERS_CSS,
-    ),
-    vscode.languages.registerCompletionItemProvider(
-      SCSS_LESS_LANGUAGES.map((language) => ({ language })),
-      completionProvider,
-      ...TRIGGER_CHARACTERS,
-    ),
-    vscode.languages.registerHoverProvider(
-      allLanguages.map((language) => ({ language })),
-      hoverProvider,
-    ),
+  const cssLikeConfigured = configLanguages.filter((l) =>
+    CSS_LIKE_LANGUAGES.includes(l),
   )
+  const otherConfigured = configLanguages.filter(
+    (l) => !CSS_LIKE_LANGUAGES.includes(l),
+  )
+
+  if (cssLikeConfigured.length > 0) {
+    context.subscriptions.push(
+      vscode.languages.registerCompletionItemProvider(
+        cssLikeConfigured.map((language) => ({ language })),
+        completionProvider,
+        ...TRIGGER_CHARACTERS_CSS,
+      ),
+    )
+  }
+
+  if (otherConfigured.length > 0) {
+    context.subscriptions.push(
+      vscode.languages.registerCompletionItemProvider(
+        otherConfigured.map((language) => ({ language })),
+        completionProvider,
+        ...TRIGGER_CHARACTERS,
+      ),
+    )
+  }
+
+  if (configLanguages.length > 0) {
+    context.subscriptions.push(
+      vscode.languages.registerHoverProvider(
+        configLanguages.map((language) => ({ language })),
+        hoverProvider,
+      ),
+    )
+  }
 
   const componentCount = Object.keys(data.components).length
   const attrCount = Object.values(data.components).reduce(

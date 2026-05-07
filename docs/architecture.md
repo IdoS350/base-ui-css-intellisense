@@ -9,7 +9,7 @@ Base UI CSS IntelliSense provides autocomplete and hover documentation for:
 
 Completions are scoped to the CSS class selector that contains the cursor (`.root`, `.popup`), and are further filtered to only show attributes and variables that belong to Base UI components known to use that class. If no component can be inferred, all known attributes/variables are shown as a fallback.
 
-Supported language IDs: `css`, `scss`, `less`, `tailwindcss`, `postcss`.
+Supported language IDs: `css`, `scss`, `less`, `tailwindcss`, `postcss` by default (configurable via `baseUiIntelliSense.languages`).
 
 ---
 
@@ -72,15 +72,17 @@ The worker is a separate bundle because it runs in a Node.js worker thread and c
 ### At activation (`src/extension.ts`)
 
 ```
-1. Read config: baseUiIntelliSense.customResolvers
+1. Read config: baseUiIntelliSense.enable / customResolvers / packageName / excludePatterns / languages
+   └─ if enable is false, return immediately (no providers registered)
 2. Spawn WorkerClient (wraps a Node.js Worker pointing at dist/parser-worker.js)
-3. Create IndexManager(resolverNames, workerClient)
+3. Create IndexManager(resolverNames, workerClient, packageName, excludePatterns)
 4. IndexManager.register(context)  ← wires up onDidSaveTextDocument listener
 5. loadData(context)               ← reads data/base-ui-attributes.json from disk
 6. new BaseUiCompletionProvider(data, indexManager)
    └─ builds attributeByName and cssVarByName Maps from data
 7. new BaseUiHoverProvider(attributeByName, cssVarByName, indexManager)
-8. Register providers for each language group
+8. Split configured languages into CSS-like vs. others (determines trigger characters)
+9. Register providers for each non-empty language group
 ```
 
 ### On completion trigger
@@ -95,7 +97,7 @@ User types [ or - or " or '
        ├─ if selectorScope != null && kind != none:
        │   └─ indexManager.getIndex(document.uri, token)
        │       ├─ check cache (return immediately if hit)
-       │       ├─ findBridgeFiles(cssUri, token)     ← finds .ts/.tsx that import this CSS + @base-ui/react
+       │       ├─ findBridgeFiles(cssUri, token, packageName, excludePatterns)  ← finds .ts/.tsx that import this CSS + packageName
        │       ├─ read bridge file contents
        │       ├─ extractClassSelectors(cssContent)  ← all .classNames from the CSS
        │       ├─ workerClient.run(selectors, contents, resolverNames, signal)
@@ -154,13 +156,15 @@ type SelectorIndex = Map<string, string[]>
 
 ## Configuration
 
-One user-facing setting in `package.json`:
+All settings live under the `baseUiIntelliSense` namespace in `package.json`:
 
-```json
-"baseUiIntelliSense.customResolvers": ["styleComponent", "withStyles"]
-```
-
-When non-empty, the AST analyzer also scans `CallExpression` nodes whose callee matches one of these names. See [component-detection.md](./component-detection.md#custom-resolver).
+| Setting           | Type     | Default                                         | Description                                                                                                                                 |
+| ----------------- | -------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enable`          | boolean  | `true`                                          | Master on/off switch. Requires a window reload.                                                                                             |
+| `packageName`     | string   | `"@base-ui/react"`                              | Import identifier used to detect bridge files. Change for forks or monorepo aliases.                                                        |
+| `excludePatterns` | string[] | `["**/node_modules/**", ...]`                   | Glob patterns excluded when scanning for bridge files.                                                                                      |
+| `languages`       | string[] | `["css","tailwindcss","postcss","scss","less"]` | Language IDs to activate completions and hover for. Languages not in the built-in CSS-like list get `[` as an additional trigger character. |
+| `customResolvers` | string[] | `[]`                                            | HOC/factory function names to scan for component + className pairs. See [component-detection.md](./component-detection.md#custom-resolver). |
 
 ---
 
