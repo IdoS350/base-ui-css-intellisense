@@ -13,7 +13,7 @@ CSS file being edited
     │
     ▼
 Bridge Finder
-    Find all .ts/.tsx files that import both this CSS file and @base-ui/react.
+    Find all .ts/.tsx files that import both this CSS file and the configured packageName.
     Result: bridge file URIs
     │
     ▼
@@ -54,15 +54,15 @@ Worker Thread
 
 ## Bridge Finder (`src/component-detection/bridge-finder.ts`)
 
-**Goal:** given a CSS file URI, return the JS/TS files that are "bridges" — they import this CSS file and also import from `@base-ui/react`.
+**Goal:** given a CSS file URI, return the JS/TS files that are "bridges" — they import this CSS file and also import from the configured Base UI package.
 
 **Algorithm:**
 
 1. Extract the CSS file's basename (e.g. `button.css`).
-2. Use `vscode.workspace.findFiles` to enumerate all `.ts`, `.tsx`, `.js`, `.jsx` files in the workspace (excluding `node_modules`, `dist`, `out`, `releases`).
+2. Use `vscode.workspace.findFiles` to enumerate all `.ts`, `.tsx`, `.js`, `.jsx` files in the workspace, excluding the patterns from `baseUiIntelliSense.excludePatterns` (default: `node_modules`, `dist`, `out`, `releases`).
 3. For each candidate, read the file content and test two conditions:
    - Contains the CSS basename in a quote pair: `/['"][^'"]*button\.css['"]/`
-   - Contains `@base-ui/react` anywhere in the file.
+   - Contains the `baseUiIntelliSense.packageName` string anywhere in the file (default: `@base-ui/react`).
 4. Return the URIs that pass both checks.
 
 The basename search intentionally avoids resolving path aliases — the literal filename appears in the import string regardless of how the path prefix is configured.
@@ -73,10 +73,12 @@ The basename search intentionally avoids resolving path aliases — the literal 
 export async function findBridgeFiles(
   cssUri: vscode.Uri,
   token: vscode.CancellationToken,
+  packageName: string,
+  excludePatterns: string[],
 ): Promise<vscode.Uri[]>
 
 // Pure helper, used in unit tests:
-export function importsBaseUi(fileContent: string): boolean
+export function importsBaseUi(fileContent: string, packageName: string): boolean
 ```
 
 ---
@@ -204,7 +206,7 @@ export class IndexManager {
 ```
 getIndex(cssUri, token)
   1. abort any in-flight request for this URI
-  2. findBridgeFiles(cssUri, token)      ← VS Code API, extension host thread
+  2. findBridgeFiles(cssUri, token, packageName, excludePatterns)  ← VS Code API, extension host thread
   3. read each bridge file               ← VS Code API, extension host thread
   4. read CSS file                       ← VS Code API, extension host thread
   5. extractClassSelectors(cssContent)   ← synchronous, extension host thread
@@ -272,4 +274,6 @@ type WorkerResponse =
 
 ## Adding support for a new import pattern
 
-If Base UI adds a new import path (e.g. `@base-ui/react/unstable`) the only change needed is in `bridge-finder.ts` — add the new string to the `importsBaseUi` check — and `ast-analyzer.ts` — add the new source value to the `ImportDeclaration` filter in `extractAliasMap`.
+**For end users:** set `baseUiIntelliSense.packageName` to the alternative package name (e.g. `@myorg/base-ui`). The bridge finder uses this value as a substring match against file contents.
+
+**For a new canonical import path in the Base UI package itself** (e.g. `@base-ui/react/unstable`): update `ast-analyzer.ts` — add the new source value to the `ImportDeclaration` filter in `extractAliasMap` so the alias map is populated from that path too. The bridge finder will already detect the file since it does a substring match on `packageName`.
