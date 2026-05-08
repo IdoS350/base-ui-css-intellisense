@@ -115,5 +115,8 @@
   },
   "dependencies": {
     "@babel/parser": "^7.29.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@vscode/vsce-sign", "esbuild", "keytar"]
   }
 }
