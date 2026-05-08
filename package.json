@@ -1,5 +1,6 @@
 {
   "name": "base-ui-css-intellisense",
+  "packageManager": "pnpm@10.33.0",
   "displayName": "Base UI CSS IntelliSense",
   "description": "Autocomplete and hover docs for Base UI data attributes and CSS variables in CSS, SCSS, and Less files.",
   "version": "0.1.0",
@@ -114,5 +115,12 @@
   },
   "dependencies": {
     "@babel/parser": "^7.29.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@vscode/vsce-sign",
+      "esbuild",
+      "keytar"
+    ]
   }
 }
