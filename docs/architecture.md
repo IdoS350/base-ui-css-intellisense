@@ -21,7 +21,9 @@ base-ui-css-intellisense/
 │   ├── extension.ts                    # Activation entry point
 │   ├── data/
 │   │   ├── types.ts                    # Data schema types
-│   │   └── loader.ts                   # Loads bundled JSON at runtime
+│   │   ├── loader.ts                   # Orchestrates version detection, fetch, and fallback
+│   │   ├── version-detector.ts         # Reads installed Base UI version from node_modules
+│   │   └── fetcher.ts                  # Fetches and caches versioned data from GitHub releases
 │   ├── providers/
 │   │   ├── completion.ts               # CompletionItemProvider
 │   │   └── hover.ts                    # HoverProvider
@@ -47,8 +49,7 @@ base-ui-css-intellisense/
 │       ├── jsdoc.ts                    # JSDoc comment extraction
 │       └── *.test.ts                   # Unit tests (vitest)
 ├── data/
-│   ├── base-ui-attributes.json         # Programmatic data (generated, committed)
-│   └── base-ui.css-data.json           # VS Code custom data (generated, committed)
+│   └── base-ui-attributes.json         # Bundled fallback data (generated, committed)
 └── docs/                               # This directory
 ```
 
@@ -74,15 +75,24 @@ The worker is a separate bundle because it runs in a Node.js worker thread and c
 ```
 1. Read config: baseUiIntelliSense.enable / customResolvers / packageName / excludePatterns / languages
    └─ if enable is false, return immediately (no providers registered)
-2. Spawn WorkerClient (wraps a Node.js Worker pointing at dist/parser-worker.js)
-3. Create IndexManager(resolverNames, workerClient, packageName, excludePatterns)
-4. IndexManager.register(context)  ← wires up onDidSaveTextDocument listener
-5. loadData(context)               ← reads data/base-ui-attributes.json from disk
-6. new BaseUiCompletionProvider(data, indexManager)
+2. Create OutputChannel "Base UI IntelliSense"
+3. Spawn WorkerClient (wraps a Node.js Worker pointing at dist/parser-worker.js)
+4. Create IndexManager(resolverNames, workerClient, packageName, excludePatterns)
+5. IndexManager.register(context)  ← wires up onDidSaveTextDocument listener
+6. loadData(context, packageName, log)  ← async; resolves the best available data:
+     a. detectBaseUiVersion(packageName)
+        └─ scan workspace roots for node_modules/{packageName}/package.json
+     b. if no install found → use bundled data/base-ui-attributes.json
+     c. if installed version matches bundled version → use bundled data
+     d. check globalStorageUri for a cached file for that version
+     e. if no cache → fetch from GitHub release asset (base-ui-v{version} tag)
+        └─ on success: write to globalStorageUri cache, return fetched data
+        └─ on failure (offline / 404): fall back to bundled data
+7. new BaseUiCompletionProvider(data, indexManager)
    └─ builds attributeByName and cssVarByName Maps from data
-7. new BaseUiHoverProvider(attributeByName, cssVarByName, indexManager)
-8. Split configured languages into CSS-like vs. others (determines trigger characters)
-9. Register providers for each non-empty language group
+8. new BaseUiHoverProvider(attributeByName, cssVarByName, indexManager)
+9. Split configured languages into CSS-like vs. others (determines trigger characters)
+10. Register providers for each non-empty language group
 ```
 
 ### On completion trigger
@@ -173,8 +183,9 @@ All settings live under the `baseUiIntelliSense` namespace in `package.json`:
 Unit tests live next to the code they test (`*.test.ts`). The vitest config picks up:
 
 - `scripts/generate/*.test.ts`
-- `src/util/context.test.ts`
+- `src/util/*.test.ts`
 - `src/component-detection/*.test.ts`
+- `src/data/*.test.ts`
 
 Run everything with `pnpm test`.
 

@@ -15,7 +15,9 @@ const SCSS_LESS_LANGUAGES = ['scss', 'less']
 const TRIGGER_CHARACTERS = ['[', '-', '"', "'"]
 const TRIGGER_CHARACTERS_CSS = ['-', '"', "'"]
 
-export function activate(context: vscode.ExtensionContext): void {
+export async function activate(
+  context: vscode.ExtensionContext,
+): Promise<void> {
   const config = vscode.workspace.getConfiguration('baseUiIntelliSense')
 
   if (!config.get<boolean>('enable', true)) {
@@ -35,6 +37,11 @@ export function activate(context: vscode.ExtensionContext): void {
     ...SCSS_LESS_LANGUAGES,
   ])
 
+  const outputChannel = vscode.window.createOutputChannel(
+    'Base UI IntelliSense',
+  )
+  context.subscriptions.push(outputChannel)
+
   const workerPath = path.join(
     context.extensionPath,
     'dist',
@@ -52,7 +59,10 @@ export function activate(context: vscode.ExtensionContext): void {
   indexManager.register(context)
   context.subscriptions.push(indexManager)
 
-  const data = loadData(context)
+  const data = await loadData(context, packageName, (msg) =>
+    outputChannel.appendLine(`[base-ui] ${msg}`),
+  )
+
   const completionProvider = new BaseUiCompletionProvider(data, indexManager)
   const hoverProvider = new BaseUiHoverProvider(
     completionProvider.attributeByName,
@@ -102,16 +112,8 @@ export function activate(context: vscode.ExtensionContext): void {
     0,
   )
 
-  context.subscriptions.push(
-    vscode.workspace.onDidChangeTextDocument((e) => {
-      console.log(`[base-ui] text changed in lang=${e.document.languageId}`)
-    }),
-  )
-
-  console.log(
-    `[base-ui-intellisense] v3 Activated. ` +
-      `${attrCount} attributes across ${componentCount} components. ` +
-      `Registered CSS(${TRIGGER_CHARACTERS_CSS}) SCSS/Less(${TRIGGER_CHARACTERS}).`,
+  outputChannel.appendLine(
+    `[base-ui] Activated — ${attrCount} attributes across ${componentCount} components (data v${data.version}).`,
   )
 }
 

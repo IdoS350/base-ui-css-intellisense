@@ -20,13 +20,9 @@ CSS, SCSS, Less
 
 ## Base UI version
 
-Currently ships data for **Base UI v1.4.1**.
+The extension automatically detects which version of `@base-ui/react` is installed in your workspace and fetches the matching data from GitHub. The fetched data is cached locally so subsequent startups are instant and offline use still works.
 
-To regenerate from a local clone of the Base UI repo:
-
-```bash
-pnpm generate <path-to-base-ui-repo>
-```
+If no data exists for your exact version, the extension falls back to its bundled dataset and logs a message to the **Base UI IntelliSense** output channel explaining which version is in use.
 
 ## Contributing
 

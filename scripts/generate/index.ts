@@ -5,55 +5,6 @@ import { parseCssVarFiles, parseDataAttrFiles, parseSharedEnums } from './parse'
 import { readVersion, validateRepo } from './repo'
 import { groupByComponent } from './transform'
 
-const BASE_UI_GITHUB = 'https://github.com/mui/base-ui/blob/master'
-
-interface CssVarEntry {
-  description?: string
-  type?: string
-  components: string[]
-  sourceFile?: string
-}
-
-function generateCssCustomData(data: BaseUiData): object {
-  const varMap = new Map<string, CssVarEntry>()
-
-  for (const [componentName, componentData] of Object.entries(
-    data.components,
-  )) {
-    for (const cssVar of componentData.cssVariables) {
-      const existing = varMap.get(cssVar.name)
-      if (existing) {
-        existing.components.push(componentName)
-      } else {
-        varMap.set(cssVar.name, {
-          description: cssVar.description,
-          type: cssVar.type,
-          components: [componentName],
-          sourceFile: componentData.cssVarsSourceFile,
-        })
-      }
-    }
-  }
-
-  const properties = [...varMap.entries()].map(([name, entry]) => ({
-    name,
-    description: buildCssVarDescription(entry),
-  }))
-
-  return { version: 1.1, properties }
-}
-
-function buildCssVarDescription(entry: CssVarEntry): string {
-  const parts: string[] = []
-  if (entry.description) parts.push(entry.description)
-  if (entry.type) parts.push(`**Type:** \`${entry.type}\``)
-  parts.push(`**Used by:** ${entry.components.join(', ')}`)
-  if (entry.sourceFile) {
-    parts.push(`[View source on GitHub](${BASE_UI_GITHUB}/${entry.sourceFile})`)
-  }
-  return parts.join('\n\n')
-}
-
 function parseArgs(): { repoPath: string; outputPath: string } {
   const raw = process.argv[2]
   if (!raw) {
@@ -116,11 +67,6 @@ async function main() {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true })
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2), 'utf-8')
   console.log(`✓ Output → ${outputPath}`)
-
-  const cssDataPath = path.resolve('./data/base-ui.css-data.json')
-  const cssData = generateCssCustomData(output)
-  fs.writeFileSync(cssDataPath, JSON.stringify(cssData, null, 2), 'utf-8')
-  console.log(`✓ Output → ${cssDataPath}`)
 }
 
 main().catch((err) => {

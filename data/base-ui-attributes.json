@@ -1,0 +1,6200 @@
+{
+  "version": "1.4.1",
+  "components": {
+    "CheckboxGroup": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the checkbox group is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/checkbox-group/CheckboxGroupDataAttributes.ts"
+    },
+    "Input": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the input is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the input is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the input is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the input has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the input's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the input is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the input is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/input/InputDataAttributes.ts"
+    },
+    "Menubar": {
+      "attributes": [
+        {
+          "name": "data-modal",
+          "description": "Present when the corresponding menubar is modal.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Determines the orientation of the menubar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-has-submenu-open",
+          "description": "Present when any submenu within the menubar is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menubar/MenubarDataAttributes.ts"
+    },
+    "RadioGroup": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the radio group is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/radio-group/RadioGroupDataAttributes.ts"
+    },
+    "Separator": {
+      "attributes": [
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the separator.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/separator/SeparatorDataAttributes.ts"
+    },
+    "Toggle": {
+      "attributes": [
+        {
+          "name": "data-pressed",
+          "description": "Present when the toggle button is pressed.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toggle/ToggleDataAttributes.ts"
+    },
+    "ToggleGroup": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the toggle group is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toggle group.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-multiple",
+          "description": "Present when the toggle group allows multiple buttons to be in the pressed state at the same time.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toggle-group/ToggleGroupDataAttributes.ts"
+    },
+    "Accordion.Header": {
+      "attributes": [
+        {
+          "name": "data-index",
+          "description": "Indicates the index of the accordion item.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the accordion item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-open",
+          "description": "Present when the accordion item is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/accordion/header/AccordionHeaderDataAttributes.ts"
+    },
+    "Accordion.Item": {
+      "attributes": [
+        {
+          "name": "data-index",
+          "description": "Indicates the index of the accordion item.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the accordion item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-open",
+          "description": "Present when the accordion item is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/accordion/item/AccordionItemDataAttributes.ts"
+    },
+    "Accordion.Panel": {
+      "attributes": [
+        {
+          "name": "data-index",
+          "description": "Indicates the index of the accordion item.",
+          "values": []
+        },
+        {
+          "name": "data-open",
+          "description": "Present when the accordion panel is open.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the accordion.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the accordion item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the panel is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the panel is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--accordion-panel-height",
+          "description": "The accordion panel's height.",
+          "type": "number"
+        },
+        {
+          "name": "--accordion-panel-width",
+          "description": "The accordion panel's width.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/accordion/panel/AccordionPanelDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/accordion/panel/AccordionPanelCssVars.ts"
+    },
+    "Accordion.Trigger": {
+      "attributes": [
+        {
+          "name": "data-panel-open",
+          "description": "Present when the accordion panel is open.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the accordion item is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/accordion/trigger/AccordionTriggerDataAttributes.ts"
+    },
+    "Accordion.Root": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the accordion is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the accordion.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/accordion/root/AccordionRootDataAttributes.ts"
+    },
+    "Avatar.Image": {
+      "attributes": [
+        {
+          "name": "data-starting-style",
+          "description": "Present when the image is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the image is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/avatar/image/AvatarImageDataAttributes.ts"
+    },
+    "Autocomplete.InputGroup": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the input group is pressed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the component is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the component is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-popup-side",
+          "description": "Indicates which side the corresponding popup is positioned relative to its anchor.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            },
+            {
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the component is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the component is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the component has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the component's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the component has a value (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the component is focused (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-list-empty",
+          "description": "Present when the corresponding items list is empty.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/autocomplete/input-group/AutocompleteInputGroupDataAttributes.ts"
+    },
+    "Autocomplete.Item": {
+      "attributes": [
+        {
+          "name": "data-highlighted",
+          "description": "Present when the item is highlighted.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the item is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/autocomplete/item/AutocompleteItemDataAttributes.ts"
+    },
+    "Autocomplete.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the component is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the component is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-popup-side",
+          "description": "Indicates which side the corresponding popup is positioned relative to its anchor.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            },
+            {
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the component is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the component is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the component is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the component has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the component's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the component has a value (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the trigger is focused (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-list-empty",
+          "description": "Present when the corresponding items list is empty.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/autocomplete/trigger/AutocompleteTriggerDataAttributes.ts"
+    },
+    "Checkbox.Root": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the checkbox is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the checkbox is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the checkbox is in an indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the checkbox is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the checkbox is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the checkbox is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the checkbox is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the checkbox is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the checkbox has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the checkbox's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the checkbox is checked (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the checkbox is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/checkbox/root/CheckboxRootDataAttributes.ts"
+    },
+    "Checkbox.Indicator": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the checkbox is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the checkbox is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the checkbox is in an indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the checkbox is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the checkbox is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the checkbox is required.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the checkbox indicator is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the checkbox indicator is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the checkbox is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the checkbox is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the checkbox has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the checkbox's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the checkbox is checked (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the checkbox is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/checkbox/indicator/CheckboxIndicatorDataAttributes.ts"
+    },
+    "Collapsible.Panel": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the collapsible panel is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the collapsible panel is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the panel is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the panel is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--collapsible-panel-height",
+          "description": "The collapsible panel's height.",
+          "type": "number"
+        },
+        {
+          "name": "--collapsible-panel-width",
+          "description": "The collapsible panel's width.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/collapsible/panel/CollapsiblePanelDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/collapsible/panel/CollapsiblePanelCssVars.ts"
+    },
+    "Collapsible.Trigger": {
+      "attributes": [
+        {
+          "name": "data-panel-open",
+          "description": "Present when the collapsible panel is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/collapsible/trigger/CollapsibleTriggerDataAttributes.ts"
+    },
+    "ContextMenu.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding context menu is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/context-menu/trigger/ContextMenuTriggerDataAttributes.ts"
+    },
+    "Combobox.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/arrow/ComboboxArrowDataAttributes.ts"
+    },
+    "Combobox.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the popup is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the popup is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/backdrop/ComboboxBackdropDataAttributes.ts"
+    },
+    "Combobox.Clear": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the button is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the button is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the button is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/clear/ComboboxClearDataAttributes.ts"
+    },
+    "Combobox.Input": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the input is pressed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the component is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the component is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-popup-side",
+          "description": "Indicates which side the corresponding popup is positioned relative to its anchor.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            },
+            {
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the component is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the component is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the component is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the component has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the component's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the component has a value (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the input is focused (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-list-empty",
+          "description": "Present when the corresponding items list is empty.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/input/ComboboxInputDataAttributes.ts"
+    },
+    "Combobox.InputGroup": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the input group is pressed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the component is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the component is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-popup-side",
+          "description": "Indicates which side the corresponding popup is positioned relative to its anchor.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            },
+            {
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the component is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the component is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the component has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the component's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the component has a value (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the component is focused (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-list-empty",
+          "description": "Present when the corresponding items list is empty.",
+          "values": []
+        },
+        {
+          "name": "data-placeholder",
+          "description": "Present when the combobox doesn't have a value.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/input-group/ComboboxInputGroupDataAttributes.ts"
+    },
+    "Combobox.Item": {
+      "attributes": [
+        {
+          "name": "data-selected",
+          "description": "Present when the item is selected.",
+          "values": []
+        },
+        {
+          "name": "data-highlighted",
+          "description": "Present when the item is highlighted.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the item is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/item/ComboboxItemDataAttributes.ts"
+    },
+    "Combobox.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the popup is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the popup is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "click"
+            },
+            {
+              "value": "dismiss"
+            }
+          ]
+        },
+        {
+          "name": "data-empty",
+          "description": "Present when the items list is empty.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/popup/ComboboxPopupDataAttributes.ts"
+    },
+    "Combobox.ItemIndicator": {
+      "attributes": [
+        {
+          "name": "data-starting-style",
+          "description": "Present when the indicator is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the indicator is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/item-indicator/ComboboxItemIndicatorDataAttributes.ts"
+    },
+    "Combobox.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-empty",
+          "description": "Present when the items list is empty.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/combobox/positioner/ComboboxPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/combobox/positioner/ComboboxPositionerCssVars.ts"
+    },
+    "Combobox.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the component is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the component is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-popup-side",
+          "description": "Indicates which side the corresponding popup is positioned relative to its anchor.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            },
+            {
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the component is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the component is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the component is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the component has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the component's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the component has a value (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the trigger is focused (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-list-empty",
+          "description": "Present when the corresponding items list is empty.",
+          "values": []
+        },
+        {
+          "name": "data-placeholder",
+          "description": "Present when the combobox doesn't have a value.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/combobox/trigger/ComboboxTriggerDataAttributes.ts"
+    },
+    "Dialog.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the dialog is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the dialog is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the dialog is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the dialog is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/dialog/backdrop/DialogBackdropDataAttributes.ts"
+    },
+    "Dialog.Close": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the button is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/dialog/close/DialogCloseDataAttributes.ts"
+    },
+    "Dialog.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the dialog is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the dialog is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the dialog is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the dialog is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-nested",
+          "description": "Present when the dialog is nested within another dialog.",
+          "values": []
+        },
+        {
+          "name": "data-nested-dialog-open",
+          "description": "Present when the dialog has other open dialogs nested within it.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--nested-dialogs",
+          "description": "Indicates how many dialogs are nested within.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/dialog/popup/DialogPopupDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/dialog/popup/DialogPopupCssVars.ts"
+    },
+    "Dialog.Trigger": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the trigger is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding dialog is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/dialog/trigger/DialogTriggerDataAttributes.ts"
+    },
+    "Dialog.Viewport": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the dialog is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the dialog is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the dialog is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the dialog is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-nested",
+          "description": "Present when the dialog is nested within another dialog.",
+          "values": []
+        },
+        {
+          "name": "data-nested-dialog-open",
+          "description": "Present when the dialog has other open dialogs nested within it.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/dialog/viewport/DialogViewportDataAttributes.ts"
+    },
+    "Drawer.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the drawer is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the drawer is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the drawer is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the drawer is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--drawer-swipe-progress",
+          "description": "The swipe progress of the drawer gesture.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/drawer/backdrop/DrawerBackdropDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/drawer/backdrop/DrawerBackdropCssVars.ts"
+    },
+    "Drawer.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the drawer is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the drawer is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the drawer is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the drawer is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-expanded",
+          "description": "Present when the drawer is at the expanded (full-height) snap point.",
+          "values": []
+        },
+        {
+          "name": "data-nested-drawer-open",
+          "description": "Present when a nested drawer is open.",
+          "values": []
+        },
+        {
+          "name": "data-nested-drawer-swiping",
+          "description": "Present when a nested drawer is being swiped.",
+          "values": []
+        },
+        {
+          "name": "data-swipe-dismiss",
+          "description": "Present when the drawer is dismissed by swiping.",
+          "values": []
+        },
+        {
+          "name": "data-swipe-direction",
+          "description": "Indicates the swipe direction.",
+          "values": [
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-swiping",
+          "description": "Present when the drawer is being swiped.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--nested-drawers",
+          "description": "The number of nested drawers that are currently open.",
+          "type": "number"
+        },
+        {
+          "name": "--drawer-height",
+          "description": "The height of the drawer popup.",
+          "type": "CSS length"
+        },
+        {
+          "name": "--drawer-frontmost-height",
+          "description": "The height of the frontmost open drawer in the current nested drawer stack.",
+          "type": "CSS length"
+        },
+        {
+          "name": "--drawer-swipe-movement-x",
+          "description": "The swipe movement on the X axis.",
+          "type": "CSS length"
+        },
+        {
+          "name": "--drawer-swipe-movement-y",
+          "description": "The swipe movement on the Y axis.",
+          "type": "CSS length"
+        },
+        {
+          "name": "--drawer-snap-point-offset",
+          "description": "The snap point offset used for translating the drawer.",
+          "type": "CSS length"
+        },
+        {
+          "name": "--drawer-swipe-strength",
+          "description": "A scalar (0.1-1) used to scale the swipe release transition duration in CSS.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/drawer/popup/DrawerPopupDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/drawer/popup/DrawerPopupCssVars.ts"
+    },
+    "Drawer.SwipeArea": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the drawer is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the drawer is closed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the swipe area is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-swipe-direction",
+          "description": "Indicates the swipe direction.",
+          "values": [
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-swiping",
+          "description": "Present when the drawer is being swiped.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/drawer/swipe-area/DrawerSwipeAreaDataAttributes.ts"
+    },
+    "Drawer.Viewport": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the drawer is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the drawer is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the drawer is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the drawer is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-nested",
+          "description": "Present when the drawer is nested within another drawer.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/drawer/viewport/DrawerViewportDataAttributes.ts"
+    },
+    "Field.Description": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the field is in a valid state.",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the field is in an invalid state.",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the field has been touched.",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the field's value has changed.",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the field is filled.",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the field control is focused.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/field/description/FieldDescriptionDataAttributes.ts"
+    },
+    "Field.Control": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the field is in a valid state.",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the field is in an invalid state.",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the field has been touched.",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the field's value has changed.",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the field is filled.",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the field control is focused.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/field/control/FieldControlDataAttributes.ts"
+    },
+    "Field.Error": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the field is in a valid state.",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the field is in an invalid state.",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the field has been touched.",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the field's value has changed.",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the field is filled.",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the field control is focused.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the error message is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the error message is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/field/error/FieldErrorDataAttributes.ts"
+    },
+    "Field.Label": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the field is in a valid state.",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the field is in an invalid state.",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the field has been touched.",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the field's value has changed.",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the field is filled.",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the field control is focused.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/field/label/FieldLabelDataAttributes.ts"
+    },
+    "Field.Root": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the field has been touched.",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the field's value has changed.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the field is valid.",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the field is invalid.",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the field is filled.",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the field control is focused.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/field/root/FieldRootDataAttributes.ts"
+    },
+    "Menu.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the menu popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the menu popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the menu arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/arrow/MenuArrowDataAttributes.ts"
+    },
+    "Menu.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the menu is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the menu is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the menu is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the menu is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/backdrop/MenuBackdropDataAttributes.ts"
+    },
+    "Menu.CheckboxItem": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the menu checkbox item is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the menu checkbox item is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the menu checkbox item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-highlighted",
+          "description": "Present when the menu checkbox item is highlighted.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/checkbox-item/MenuCheckboxItemDataAttributes.ts"
+    },
+    "Menu.CheckboxItemIndicator": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the menu checkbox item is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the menu checkbox item is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the menu checkbox item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the indicator is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the indicator is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/checkbox-item-indicator/MenuCheckboxItemIndicatorDataAttributes.ts"
+    },
+    "Menu.LinkItem": {
+      "attributes": [
+        {
+          "name": "data-highlighted",
+          "description": "Present when the link is highlighted.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/link-item/MenuLinkItemDataAttributes.ts"
+    },
+    "Menu.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the menu is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the menu is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the menu is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the menu is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "click"
+            },
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "group"
+            },
+            {
+              "value": "trigger-change"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/popup/MenuPopupDataAttributes.ts"
+    },
+    "Menu.Item": {
+      "attributes": [
+        {
+          "name": "data-highlighted",
+          "description": "Present when the menu item is highlighted.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the menu item is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/item/MenuItemDataAttributes.ts"
+    },
+    "Menu.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the menu popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the menu popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/menu/positioner/MenuPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/menu/positioner/MenuPositionerCssVars.ts"
+    },
+    "Menu.RadioItem": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the menu radio item is selected.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the menu radio item is not selected.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the menu radio item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-highlighted",
+          "description": "Present when the menu radio item is highlighted.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/radio-item/MenuRadioItemDataAttributes.ts"
+    },
+    "Menu.RadioItemIndicator": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the menu radio item is selected.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the menu radio item is not selected.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the menu radio item is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the radio indicator is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the radio indicator is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/radio-item-indicator/MenuRadioItemIndicatorDataAttributes.ts"
+    },
+    "Menu.SubmenuTrigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding submenu is open.",
+          "values": []
+        },
+        {
+          "name": "data-highlighted",
+          "description": "Present when the submenu trigger is highlighted.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the submenu trigger is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/submenu-trigger/MenuSubmenuTriggerDataAttributes.ts"
+    },
+    "Menu.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding menu is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/menu/trigger/MenuTriggerDataAttributes.ts"
+    },
+    "Menu.Viewport": {
+      "attributes": [
+        {
+          "name": "data-current",
+          "description": "Applied to the direct child of the viewport when no transitions are present or the new content when it's entering.",
+          "values": []
+        },
+        {
+          "name": "data-previous",
+          "description": "Applied to the direct child of the viewport that contains the exiting content when transitions are present.",
+          "values": []
+        },
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction from which the popup was activated. This can be used to create directional animations based on how the popup was triggered. Contains space-separated values for both horizontal and vertical axes.",
+          "values": [
+            {
+              "value": "`${'left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-transitioning",
+          "description": "Indicates that the viewport is currently transitioning between old and new content.",
+          "values": []
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "click"
+            },
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "group"
+            },
+            {
+              "value": "trigger-change"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--popup-width",
+          "description": "The width of the parent popup. This variable is placed on the 'previous' container and stores the width of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        },
+        {
+          "name": "--popup-height",
+          "description": "The height of the parent popup. This variable is placed on the 'previous' container and stores the height of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/menu/viewport/MenuViewportDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/menu/viewport/MenuViewportCssVars.ts"
+    },
+    "NavigationMenu.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the popup arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/navigation-menu/arrow/NavigationMenuArrowDataAttributes.ts"
+    },
+    "NavigationMenu.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the popup is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the popup is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/navigation-menu/backdrop/NavigationMenuBackdropDataAttributes.ts"
+    },
+    "NavigationMenu.Content": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the content is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the content is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-activation-direction",
+          "description": "Which direction another trigger was activated from.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/navigation-menu/content/NavigationMenuContentDataAttributes.ts"
+    },
+    "NavigationMenu.Link": {
+      "attributes": [
+        {
+          "name": "data-active",
+          "description": "Present when the link is the currently active page.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/navigation-menu/link/NavigationMenuLinkDataAttributes.ts"
+    },
+    "NavigationMenu.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the popup is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the popup is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to the specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--popup-width",
+          "description": "The fixed width of the popup element.",
+          "type": "number"
+        },
+        {
+          "name": "--popup-height",
+          "description": "The fixed height of the popup element.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/navigation-menu/popup/NavigationMenuPopupDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/navigation-menu/popup/NavigationMenuPopupCssVars.ts"
+    },
+    "NavigationMenu.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to the specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        },
+        {
+          "name": "--positioner-width",
+          "description": "The fixed width of the positioner element.",
+          "type": "number"
+        },
+        {
+          "name": "--positioner-height",
+          "description": "The fixed height of the positioner element.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/navigation-menu/positioner/NavigationMenuPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/navigation-menu/positioner/NavigationMenuPositionerCssVars.ts"
+    },
+    "NavigationMenu.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding navigation menu is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/navigation-menu/trigger/NavigationMenuTriggerDataAttributes.ts"
+    },
+    "OtpField.Root": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when all slots are filled.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the OTP field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the OTP field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the OTP field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the OTP field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the OTP field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the OTP field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the OTP field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the OTP field contains at least one character.",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when one of the OTP field inputs is focused.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/otp-field/root/OTPFieldRootDataAttributes.ts"
+    },
+    "OtpField.Input": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when all slots are filled.",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the input contains a character.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the OTP field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the OTP field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the OTP field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the OTP field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the OTP field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the OTP field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the OTP field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when any OTP field input is focused.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/otp-field/input/OTPFieldInputDataAttributes.ts"
+    },
+    "NumberField.Decrement": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/decrement/NumberFieldDecrementDataAttributes.ts"
+    },
+    "NumberField.Group": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/group/NumberFieldGroupDataAttributes.ts"
+    },
+    "NumberField.Increment": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/increment/NumberFieldIncrementDataAttributes.ts"
+    },
+    "NumberField.Input": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/input/NumberFieldInputDataAttributes.ts"
+    },
+    "NumberField.ScrubArea": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/scrub-area/NumberFieldScrubAreaDataAttributes.ts"
+    },
+    "NumberField.Root": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/root/NumberFieldRootDataAttributes.ts"
+    },
+    "NumberField.ScrubAreaCursor": {
+      "attributes": [
+        {
+          "name": "data-scrubbing",
+          "description": "Present while scrubbing.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the number field is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the number field is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the number field is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the number field is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the number field is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the number field has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the number field's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the number field is filled (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the number field is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/number-field/scrub-area-cursor/NumberFieldScrubAreaCursorDataAttributes.ts"
+    },
+    "Popover.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the popover arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/popover/arrow/PopoverArrowDataAttributes.ts"
+    },
+    "Popover.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the popup is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the popup is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/popover/backdrop/PopoverBackdropDataAttributes.ts"
+    },
+    "Popover.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the popup is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the popup is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "click"
+            },
+            {
+              "value": "dismiss"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--popup-width",
+          "description": "The width of the popup."
+        },
+        {
+          "name": "--popup-height",
+          "description": "The height of the popup."
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/popover/popup/PopoverPopupDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/popover/popup/PopoverPopupCssVars.ts"
+    },
+    "Popover.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        },
+        {
+          "name": "--positioner-width",
+          "description": "The width of the popover's positioner. It is important to set `width` to this value when using CSS to animate size changes."
+        },
+        {
+          "name": "--positioner-height",
+          "description": "The height of the popover's positioner. It is important to set `height` to this value when using CSS to animate size changes."
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/popover/positioner/PopoverPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/popover/positioner/PopoverPositionerCssVars.ts"
+    },
+    "Popover.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popover is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/popover/trigger/PopoverTriggerDataAttributes.ts"
+    },
+    "Popover.Viewport": {
+      "attributes": [
+        {
+          "name": "data-current",
+          "description": "Applied to the direct child of the viewport when no transitions are present or the new content when it's entering.",
+          "values": []
+        },
+        {
+          "name": "data-previous",
+          "description": "Applied to the direct child of the viewport that contains the exiting content when transitions are present.",
+          "values": []
+        },
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction from which the popup was activated. This can be used to create directional animations based on how the popup was triggered. Contains space-separated values for both horizontal and vertical axes.",
+          "values": [
+            {
+              "value": "`${'left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-transitioning",
+          "description": "Indicates that the viewport is currently transitioning between old and new content.",
+          "values": []
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "click"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--popup-width",
+          "description": "The width of the parent popup. This variable is placed on the 'previous' container and stores the width of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        },
+        {
+          "name": "--popup-height",
+          "description": "The height of the parent popup. This variable is placed on the 'previous' container and stores the height of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/popover/viewport/PopoverViewportDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/popover/viewport/PopoverViewportCssVars.ts"
+    },
+    "PreviewCard.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the preview card is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the preview card is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the preview card arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/preview-card/arrow/PreviewCardArrowDataAttributes.ts"
+    },
+    "PreviewCard.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the preview card is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the preview card is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the preview card is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the preview card is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/preview-card/backdrop/PreviewCardBackdropDataAttributes.ts"
+    },
+    "PreviewCard.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the preview card is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the preview card is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the preview card is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the preview card is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/preview-card/popup/PreviewCardPopupDataAttributes.ts"
+    },
+    "PreviewCard.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the preview card is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the preview card is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/preview-card/positioner/PreviewCardPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/preview-card/positioner/PreviewCardPositionerCssVars.ts"
+    },
+    "PreviewCard.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding preview card is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/preview-card/trigger/PreviewCardTriggerDataAttributes.ts"
+    },
+    "Progress.Indicator": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when the progress has completed.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the progress is in indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-progressing",
+          "description": "Present while the progress is progressing.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/progress/indicator/ProgressIndicatorDataAttributes.ts"
+    },
+    "Progress.Root": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when the progress has completed.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the progress is in indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-progressing",
+          "description": "Present while the progress is progressing.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/progress/root/ProgressRootDataAttributes.ts"
+    },
+    "PreviewCard.Viewport": {
+      "attributes": [
+        {
+          "name": "data-current",
+          "description": "Applied to the direct child of the viewport when no transitions are present or the new content when it's entering.",
+          "values": []
+        },
+        {
+          "name": "data-previous",
+          "description": "Applied to the direct child of the viewport that contains the exiting content when transitions are present.",
+          "values": []
+        },
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction from which the popup was activated. This can be used to create directional animations based on how the popup was triggered. Contains space-separated values for both horizontal and vertical axes.",
+          "values": [
+            {
+              "value": "`${'left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-transitioning",
+          "description": "Indicates that the viewport is currently transitioning between old and new content.",
+          "values": []
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "delay"
+            },
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "focus"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--popup-width",
+          "description": "The width of the parent popup. This variable is placed on the 'previous' container and stores the width of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        },
+        {
+          "name": "--popup-height",
+          "description": "The height of the parent popup. This variable is placed on the 'previous' container and stores the height of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/preview-card/viewport/PreviewCardViewportDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/preview-card/viewport/PreviewCardViewportCssVars.ts"
+    },
+    "Progress.Track": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when the progress has completed.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the progress is in indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-progressing",
+          "description": "Present while the progress is progressing.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/progress/track/ProgressTrackDataAttributes.ts"
+    },
+    "Progress.Label": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when the progress has completed.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the progress is in indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-progressing",
+          "description": "Present while the progress is progressing.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/progress/label/ProgressLabelDataAttributes.ts"
+    },
+    "Progress.Value": {
+      "attributes": [
+        {
+          "name": "data-complete",
+          "description": "Present when the progress has completed.",
+          "values": []
+        },
+        {
+          "name": "data-indeterminate",
+          "description": "Present when the progress is in indeterminate state.",
+          "values": []
+        },
+        {
+          "name": "data-progressing",
+          "description": "Present while the progress is progressing.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/progress/value/ProgressValueDataAttributes.ts"
+    },
+    "Radio.Indicator": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the radio is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the radio is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the radio is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the radio is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the radio is required.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the radio indicator is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the radio indicator is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the radio is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the radio is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the radio has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the radio's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the radio is checked (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the radio is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/radio/indicator/RadioIndicatorDataAttributes.ts"
+    },
+    "Radio.Root": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the radio is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the radio is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the radio is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the radio is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the radio is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the radio is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the radio is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the radio has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the radio's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the radio is checked (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the radio is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/radio/root/RadioRootDataAttributes.ts"
+    },
+    "ScrollArea.Scrollbar": {
+      "attributes": [
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the scrollbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-hovering",
+          "description": "Present when the pointer is over the scroll area.",
+          "values": []
+        },
+        {
+          "name": "data-scrolling",
+          "description": "Present when the user scrolls inside the scroll area.",
+          "values": []
+        },
+        {
+          "name": "data-has-overflow-x",
+          "description": "Present when the scroll area content is wider than the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-has-overflow-y",
+          "description": "Present when the scroll area content is taller than the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-x-start",
+          "description": "Present when there is overflow on the horizontal start side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-x-end",
+          "description": "Present when there is overflow on the horizontal end side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-y-start",
+          "description": "Present when there is overflow on the vertical start side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-y-end",
+          "description": "Present when there is overflow on the vertical end side.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--scroll-area-thumb-height",
+          "description": "The scroll area thumb's height.",
+          "type": "number"
+        },
+        {
+          "name": "--scroll-area-thumb-width",
+          "description": "The scroll area thumb's width.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/scroll-area/scrollbar/ScrollAreaScrollbarCssVars.ts"
+    },
+    "ScrollArea.Root": {
+      "attributes": [
+        {
+          "name": "data-scrolling",
+          "description": "Present when the user scrolls inside the scroll area.",
+          "values": []
+        },
+        {
+          "name": "data-has-overflow-x",
+          "description": "Present when the scroll area content is wider than the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-has-overflow-y",
+          "description": "Present when the scroll area content is taller than the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-x-start",
+          "description": "Present when there is overflow on the horizontal start side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-x-end",
+          "description": "Present when there is overflow on the horizontal end side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-y-start",
+          "description": "Present when there is overflow on the vertical start side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-y-end",
+          "description": "Present when there is overflow on the vertical end side.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--scroll-area-corner-height",
+          "description": "The scroll area's corner height.",
+          "type": "number"
+        },
+        {
+          "name": "--scroll-area-corner-width",
+          "description": "The scroll area's corner width.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/scroll-area/root/ScrollAreaRootDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/scroll-area/root/ScrollAreaRootCssVars.ts"
+    },
+    "ScrollArea.Thumb": {
+      "attributes": [
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the scrollbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/scroll-area/thumb/ScrollAreaThumbDataAttributes.ts"
+    },
+    "ScrollArea.Viewport": {
+      "attributes": [
+        {
+          "name": "data-scrolling",
+          "description": "Present when the user scrolls inside the scroll area.",
+          "values": []
+        },
+        {
+          "name": "data-has-overflow-x",
+          "description": "Present when the scroll area content is wider than the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-has-overflow-y",
+          "description": "Present when the scroll area content is taller than the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-x-start",
+          "description": "Present when there is overflow on the horizontal start side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-x-end",
+          "description": "Present when there is overflow on the horizontal end side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-y-start",
+          "description": "Present when there is overflow on the vertical start side.",
+          "values": []
+        },
+        {
+          "name": "data-overflow-y-end",
+          "description": "Present when there is overflow on the vertical end side.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--scroll-area-overflow-x-start",
+          "description": "The distance from the horizontal start edge in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "--scroll-area-overflow-x-end",
+          "description": "The distance from the horizontal end edge in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "--scroll-area-overflow-y-start",
+          "description": "The distance from the vertical start edge in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "--scroll-area-overflow-y-end",
+          "description": "The distance from the vertical end edge in pixels.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/scroll-area/viewport/ScrollAreaViewportDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/scroll-area/viewport/ScrollAreaViewportCssVars.ts"
+    },
+    "Select.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the select popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the select popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "none"
+            },
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the select arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/arrow/SelectArrowDataAttributes.ts"
+    },
+    "Select.Backdrop": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the select is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the select is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the select is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the select is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/backdrop/SelectBackdropDataAttributes.ts"
+    },
+    "Select.Item": {
+      "attributes": [
+        {
+          "name": "data-selected",
+          "description": "Present when the select item is selected.",
+          "values": []
+        },
+        {
+          "name": "data-highlighted",
+          "description": "Present when the select item is highlighted.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the select item is disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/item/SelectItemDataAttributes.ts"
+    },
+    "Select.ItemIndicator": {
+      "attributes": [
+        {
+          "name": "data-starting-style",
+          "description": "Present when the indicator is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the indicator is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/item-indicator/SelectItemIndicatorDataAttributes.ts"
+    },
+    "Select.Icon": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding popup is open.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/icon/SelectIconDataAttributes.ts"
+    },
+    "Select.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the select is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the select is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the select is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the select is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "none"
+            },
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/popup/SelectPopupDataAttributes.ts"
+    },
+    "Select.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the select popup is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the select popup is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "none"
+            },
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/select/positioner/SelectPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/select/positioner/SelectPositionerCssVars.ts"
+    },
+    "Select.ScrollDownArrow": {
+      "attributes": [
+        {
+          "name": "data-starting-style",
+          "description": "Present when the scroll arrow is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the scroll arrow is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-direction",
+          "description": "Indicates the direction of the scroll arrow.",
+          "values": [
+            {
+              "value": "down"
+            }
+          ]
+        },
+        {
+          "name": "data-visible",
+          "description": "Present when the scroll arrow is visible.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "none"
+            },
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/scroll-down-arrow/SelectScrollDownArrowDataAttributes.ts"
+    },
+    "Select.ScrollUpArrow": {
+      "attributes": [
+        {
+          "name": "data-starting-style",
+          "description": "Present when the scroll arrow is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the scroll arrow is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-direction",
+          "description": "Indicates the direction of the scroll arrow.",
+          "values": [
+            {
+              "value": "up"
+            }
+          ]
+        },
+        {
+          "name": "data-visible",
+          "description": "Present when the scroll arrow is visible.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "none"
+            },
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/scroll-up-arrow/SelectScrollUpArrowDataAttributes.ts"
+    },
+    "Slider.Control": {
+      "attributes": [
+        {
+          "name": "data-dragging",
+          "description": "Present while the user is dragging.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the slider.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the slider is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the slider is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the slider is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the slider has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the slider's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the slider is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/slider/control/SliderControlDataAttributes.ts"
+    },
+    "Select.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding select is open.",
+          "values": []
+        },
+        {
+          "name": "data-pressed",
+          "description": "Present when the trigger is pressed.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the select is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the select is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the select is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the select is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the select is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the select has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the select's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the select has a value (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the select trigger is focused (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-placeholder",
+          "description": "Present when the select doesn't have a value.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/trigger/SelectTriggerDataAttributes.ts"
+    },
+    "Slider.Indicator": {
+      "attributes": [
+        {
+          "name": "data-dragging",
+          "description": "Present while the user is dragging.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the slider.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the slider is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the slider is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the slider is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the slider has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the slider's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the slider is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/slider/indicator/SliderIndicatorDataAttributes.ts"
+    },
+    "Select.Value": {
+      "attributes": [
+        {
+          "name": "data-placeholder",
+          "description": "Present when the select doesn't have a value.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/select/value/SelectValueDataAttributes.ts"
+    },
+    "Slider.Root": {
+      "attributes": [
+        {
+          "name": "data-dragging",
+          "description": "Present while the user is dragging.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the slider.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the slider is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the slider is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the slider is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the slider has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the slider's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the slider is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/slider/root/SliderRootDataAttributes.ts"
+    },
+    "Slider.Thumb": {
+      "attributes": [
+        {
+          "name": "data-index",
+          "description": "Indicates the index of the thumb in range sliders.",
+          "values": []
+        },
+        {
+          "name": "data-dragging",
+          "description": "Present while the user is dragging.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the slider.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the slider is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the slider is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the slider is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the slider has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the slider's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the slider is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/slider/thumb/SliderThumbDataAttributes.ts"
+    },
+    "Slider.Track": {
+      "attributes": [
+        {
+          "name": "data-dragging",
+          "description": "Present while the user is dragging.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the slider.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the slider is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the slider is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the slider is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the slider has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the slider's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the slider is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/slider/track/SliderTrackDataAttributes.ts"
+    },
+    "Slider.Value": {
+      "attributes": [
+        {
+          "name": "data-dragging",
+          "description": "Present while the user is dragging.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the slider.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the slider is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the slider is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the slider is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the slider has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the slider's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the slider is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/slider/value/SliderValueDataAttributes.ts"
+    },
+    "Switch.Root": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the switch is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the switch is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the switch is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the switch is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the switch is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the switch is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the switch is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the switch has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the switch's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the switch is active (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the switch is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/switch/root/SwitchRootDataAttributes.ts"
+    },
+    "Switch.Thumb": {
+      "attributes": [
+        {
+          "name": "data-checked",
+          "description": "Present when the switch is checked.",
+          "values": []
+        },
+        {
+          "name": "data-unchecked",
+          "description": "Present when the switch is not checked.",
+          "values": []
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the switch is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-readonly",
+          "description": "Present when the switch is readonly.",
+          "values": []
+        },
+        {
+          "name": "data-required",
+          "description": "Present when the switch is required.",
+          "values": []
+        },
+        {
+          "name": "data-valid",
+          "description": "Present when the switch is in a valid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-invalid",
+          "description": "Present when the switch is in an invalid state (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-touched",
+          "description": "Present when the switch has been touched (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-dirty",
+          "description": "Present when the switch's value has changed (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-filled",
+          "description": "Present when the switch is active (when wrapped in Field.Root).",
+          "values": []
+        },
+        {
+          "name": "data-focused",
+          "description": "Present when the switch is focused (when wrapped in Field.Root).",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/switch/thumb/SwitchThumbDataAttributes.ts"
+    },
+    "Tabs.Indicator": {
+      "attributes": [
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction of the activation (based on the previous active tab).",
+          "values": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the tabs.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--active-tab-left",
+          "description": "Indicates the distance on the left side from the parent's container if the tab is active.",
+          "type": "number"
+        },
+        {
+          "name": "--active-tab-right",
+          "description": "Indicates the distance on the right side from the parent's container if the tab is active.",
+          "type": "number"
+        },
+        {
+          "name": "--active-tab-top",
+          "description": "Indicates the distance on the top side from the parent's container if the tab is active.",
+          "type": "number"
+        },
+        {
+          "name": "--active-tab-bottom",
+          "description": "Indicates the distance on the bottom side from the parent's container if the tab is active.",
+          "type": "number"
+        },
+        {
+          "name": "--active-tab-width",
+          "description": "Indicates the width of the tab if it is active.",
+          "type": "number"
+        },
+        {
+          "name": "--active-tab-height",
+          "description": "Indicates the height of the tab if it is active.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/tabs/indicator/TabsIndicatorDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/tabs/indicator/TabsIndicatorCssVars.ts"
+    },
+    "Tabs.List": {
+      "attributes": [
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction of the activation (based on the previous active tab).",
+          "values": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the tabs.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tabs/list/TabsListDataAttributes.ts"
+    },
+    "Tabs.Panel": {
+      "attributes": [
+        {
+          "name": "data-index",
+          "description": "Indicates the index of the tab panel.",
+          "values": []
+        },
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction of the activation (based on the previous active tab).",
+          "values": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the tabs.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-hidden",
+          "description": "Present when the panel is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the panel is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the panel is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tabs/panel/TabsPanelDataAttributes.ts"
+    },
+    "Toast.Action": {
+      "attributes": [
+        {
+          "name": "data-type",
+          "description": "The type of the toast.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toast/action/ToastActionDataAttributes.ts"
+    },
+    "Tabs.Tab": {
+      "attributes": [
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction of the activation (based on the previous active tab).",
+          "values": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the tabs.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-disabled",
+          "description": "Present when the tab is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-active",
+          "description": "Present when the tab is active.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tabs/tab/TabsTabDataAttributes.ts"
+    },
+    "Toast.Arrow": {
+      "attributes": [
+        {
+          "name": "data-side",
+          "description": "Indicates which side the toast is positioned relative to the anchor.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the toast is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the toast arrow is uncentered.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toast/arrow/ToastArrowDataAttributes.ts"
+    },
+    "Tabs.Root": {
+      "attributes": [
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction of the activation (based on the previous active tab).",
+          "values": [
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the tabs.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tabs/root/TabsRootDataAttributes.ts"
+    },
+    "Toast.Content": {
+      "attributes": [
+        {
+          "name": "data-expanded",
+          "description": "Present when the toast viewport is expanded.",
+          "values": []
+        },
+        {
+          "name": "data-behind",
+          "description": "Present when the toast is behind the frontmost toast in the stack.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toast/content/ToastContentDataAttributes.ts"
+    },
+    "Toast.Close": {
+      "attributes": [
+        {
+          "name": "data-type",
+          "description": "The type of the toast.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toast/close/ToastCloseDataAttributes.ts"
+    },
+    "Toast.Description": {
+      "attributes": [
+        {
+          "name": "data-type",
+          "description": "The type of the toast.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toast/description/ToastDescriptionDataAttributes.ts"
+    },
+    "Toast.Positioner": {
+      "attributes": [
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the toast is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the toast is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the anchor and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the anchor and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/toast/positioner/ToastPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/toast/positioner/ToastPositionerCssVars.ts"
+    },
+    "Toast.Root": {
+      "attributes": [
+        {
+          "name": "data-expanded",
+          "description": "Present when the toast is expanded in the viewport.",
+          "values": []
+        },
+        {
+          "name": "data-limited",
+          "description": "Present when the toast was removed due to exceeding the limit.",
+          "values": []
+        },
+        {
+          "name": "data-type",
+          "description": "The type of the toast.",
+          "values": []
+        },
+        {
+          "name": "data-swiping",
+          "description": "Present when the toast is being swiped.",
+          "values": []
+        },
+        {
+          "name": "data-swipe-direction",
+          "description": "The direction the toast was swiped.",
+          "values": [
+            {
+              "value": "up"
+            },
+            {
+              "value": "down"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the toast is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the toast is animating out.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--toast-index",
+          "description": "Indicates the index of the toast in the list.",
+          "type": "number"
+        },
+        {
+          "name": "--toast-offset-y",
+          "description": "Indicates the vertical pixels offset of the toast in the list when expanded.",
+          "type": "number"
+        },
+        {
+          "name": "--toast-height",
+          "description": "Indicates the measured natural height of the toast in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "--toast-swipe-movement-x",
+          "description": "Indicates the horizontal swipe movement of the toast.",
+          "type": "number"
+        },
+        {
+          "name": "--toast-swipe-movement-y",
+          "description": "Indicates the vertical swipe movement of the toast.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/toast/root/ToastRootDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/toast/root/ToastRootCssVars.ts"
+    },
+    "Toast.Title": {
+      "attributes": [
+        {
+          "name": "data-type",
+          "description": "The type of the toast.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toast/title/ToastTitleDataAttributes.ts"
+    },
+    "Toolbar.Button": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the button is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toolbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-focusable",
+          "description": "Present when the button remains focusable when disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toolbar/button/ToolbarButtonDataAttributes.ts"
+    },
+    "Toast.Viewport": {
+      "attributes": [
+        {
+          "name": "data-expanded",
+          "description": "Indicates toasts are expanded in the viewport.",
+          "values": []
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--toast-frontmost-height",
+          "description": "Indicates the height of the frontmost toast.",
+          "type": "number"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/toast/viewport/ToastViewportDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/toast/viewport/ToastViewportCssVars.ts"
+    },
+    "Toolbar.Group": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the group is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toolbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toolbar/group/ToolbarGroupDataAttributes.ts"
+    },
+    "Toolbar.Input": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the input is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toolbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        },
+        {
+          "name": "data-focusable",
+          "description": "Present when the input remains focusable when disabled.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toolbar/input/ToolbarInputDataAttributes.ts"
+    },
+    "Toolbar.Link": {
+      "attributes": [
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toolbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toolbar/link/ToolbarLinkDataAttributes.ts"
+    },
+    "Toolbar.Root": {
+      "attributes": [
+        {
+          "name": "data-disabled",
+          "description": "Present when the toolbar is disabled.",
+          "values": []
+        },
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toolbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toolbar/root/ToolbarRootDataAttributes.ts"
+    },
+    "Toolbar.Separator": {
+      "attributes": [
+        {
+          "name": "data-orientation",
+          "description": "Indicates the orientation of the toolbar.",
+          "values": [
+            {
+              "value": "horizontal"
+            },
+            {
+              "value": "vertical"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/toolbar/separator/ToolbarSeparatorDataAttributes.ts"
+    },
+    "Tooltip.Arrow": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the tooltip is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the tooltip is closed.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-uncentered",
+          "description": "Present when the tooltip arrow is uncentered.",
+          "values": []
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "delay"
+            },
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "focus"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tooltip/arrow/TooltipArrowDataAttributes.ts"
+    },
+    "Tooltip.Popup": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the tooltip is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the tooltip is closed.",
+          "values": []
+        },
+        {
+          "name": "data-starting-style",
+          "description": "Present when the tooltip is animating in.",
+          "values": []
+        },
+        {
+          "name": "data-ending-style",
+          "description": "Present when the tooltip is animating out.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "delay"
+            },
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "focus"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tooltip/popup/TooltipPopupDataAttributes.ts"
+    },
+    "Tooltip.Positioner": {
+      "attributes": [
+        {
+          "name": "data-open",
+          "description": "Present when the tooltip is open.",
+          "values": []
+        },
+        {
+          "name": "data-closed",
+          "description": "Present when the tooltip is closed.",
+          "values": []
+        },
+        {
+          "name": "data-anchor-hidden",
+          "description": "Present when the anchor is hidden.",
+          "values": []
+        },
+        {
+          "name": "data-side",
+          "description": "Indicates which side the popup is positioned relative to the trigger.",
+          "values": [
+            {
+              "value": "top"
+            },
+            {
+              "value": "bottom"
+            },
+            {
+              "value": "left"
+            },
+            {
+              "value": "right"
+            },
+            {
+              "value": "inline-end"
+            },
+            {
+              "value": "inline-start"
+            }
+          ]
+        },
+        {
+          "name": "data-align",
+          "description": "Indicates how the popup is aligned relative to specified side.",
+          "values": [
+            {
+              "value": "start"
+            },
+            {
+              "value": "center"
+            },
+            {
+              "value": "end"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--available-width",
+          "description": "The available width between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--available-height",
+          "description": "The available height between the trigger and the edge of the viewport.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-width",
+          "description": "The anchor's width.",
+          "type": "number"
+        },
+        {
+          "name": "--anchor-height",
+          "description": "The anchor's height.",
+          "type": "number"
+        },
+        {
+          "name": "--transform-origin",
+          "description": "The coordinates that this element is anchored to. Used for animations and transitions.",
+          "type": "string"
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/tooltip/positioner/TooltipPositionerDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/tooltip/positioner/TooltipPositionerCssVars.ts"
+    },
+    "Tooltip.Trigger": {
+      "attributes": [
+        {
+          "name": "data-popup-open",
+          "description": "Present when the corresponding tooltip is open.",
+          "values": []
+        },
+        {
+          "name": "data-trigger-disabled",
+          "description": "Present when the trigger is disabled, either by the `disabled` prop or by a parent `<Tooltip.Root>` component.",
+          "values": []
+        }
+      ],
+      "cssVariables": [],
+      "attributesSourceFile": "packages/react/src/tooltip/trigger/TooltipTriggerDataAttributes.ts"
+    },
+    "Tooltip.Viewport": {
+      "attributes": [
+        {
+          "name": "data-current",
+          "description": "Applied to the direct child of the viewport when no transitions are present or the new content when it's entering.",
+          "values": []
+        },
+        {
+          "name": "data-previous",
+          "description": "Applied to the direct child of the viewport that contains the exiting content when transitions are present.",
+          "values": []
+        },
+        {
+          "name": "data-activation-direction",
+          "description": "Indicates the direction from which the popup was activated. This can be used to create directional animations based on how the popup was triggered. Contains space-separated values for both horizontal and vertical axes.",
+          "values": [
+            {
+              "value": "`${'left"
+            },
+            {
+              "value": "right"
+            }
+          ]
+        },
+        {
+          "name": "data-transitioning",
+          "description": "Indicates that the viewport is currently transitioning between old and new content.",
+          "values": []
+        },
+        {
+          "name": "data-instant",
+          "description": "Present if animations should be instant.",
+          "values": [
+            {
+              "value": "delay"
+            },
+            {
+              "value": "dismiss"
+            },
+            {
+              "value": "focus"
+            }
+          ]
+        }
+      ],
+      "cssVariables": [
+        {
+          "name": "--popup-width",
+          "description": "The width of the parent popup. This variable is placed on the 'previous' container and stores the width of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        },
+        {
+          "name": "--popup-height",
+          "description": "The height of the parent popup. This variable is placed on the 'previous' container and stores the height of the popup when the previous content was rendered. It can be used to freeze the dimensions of the popup when animating between different content."
+        }
+      ],
+      "attributesSourceFile": "packages/react/src/tooltip/viewport/TooltipViewportDataAttributes.ts",
+      "cssVarsSourceFile": "packages/react/src/tooltip/viewport/TooltipViewportCssVars.ts"
+    }
+  }
+}
