@@ -1,11 +1,12 @@
 # Data Generation
 
-The extension ships two pre-generated data files in the `data/` directory. These are committed to the repository and do not need to be regenerated unless Base UI releases a new version or the data schema changes.
+The extension ships one pre-generated data file:
 
-| File                           | Purpose                                                                                                                                                                         |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data/base-ui-attributes.json` | Programmatic data consumed by the completion and hover providers at runtime                                                                                                     |
-| `data/base-ui.css-data.json`   | VS Code [Custom Data](https://code.visualstudio.com/api/extension-guides/custom-data-extension) format; provides CSS property documentation to the built-in CSS language server |
+| File                           | Purpose                                                        |
+| ------------------------------ | -------------------------------------------------------------- |
+| `data/base-ui-attributes.json` | Data consumed by the completion and hover providers at runtime |
+
+This file is committed to the repository and does not need to be regenerated unless Base UI releases a new version or the data schema changes.
 
 ---
 
@@ -16,7 +17,7 @@ git clone https://github.com/mui/base-ui.git ../base-ui
 pnpm generate ../base-ui
 ```
 
-The script writes both files. After running, verify with:
+The script writes `data/base-ui-attributes.json`. After running, verify with:
 
 ```bash
 node -e "JSON.parse(require('fs').readFileSync('data/base-ui-attributes.json','utf-8'))"
@@ -42,7 +43,6 @@ main()
   6. parseCssVarFiles()   → RawCssVar[] from *CssVars.ts files
   7. transform()          → BaseUiData (grouped by component)
   8. write()              → data/base-ui-attributes.json
-                            data/base-ui.css-data.json
 ```
 
 ### Source file shapes
@@ -146,11 +146,19 @@ The `sourceFile` field on each entry stores the relative path within the Base UI
 }
 ```
 
-### Adding a new Base UI version
+### Publishing data for a new Base UI version
+
+The extension fetches data per-version at runtime from GitHub release assets, so each supported Base UI version needs a corresponding release. Users on an unsupported version fall back to the bundled data automatically.
 
 1. Check out or pull the new version of the Base UI repo.
-2. Run `pnpm generate /path/to/base-ui`.
-3. Commit both `data/base-ui-attributes.json` and `data/base-ui.css-data.json`.
-4. Update `CHANGELOG.md` with the new Base UI version number.
+2. Run `pnpm generate /path/to/base-ui` — this overwrites `data/base-ui-attributes.json`.
+3. Commit the updated file.
+4. Push a tag matching `base-ui-v{version}` (e.g. `base-ui-v1.5.0`):
+   ```bash
+   git tag base-ui-v1.5.0
+   git push origin base-ui-v1.5.0
+   ```
+5. The `Publish Data Release` GitHub Action triggers automatically, creates a GitHub release for that tag, and uploads `data/base-ui-attributes.json` as an asset.
+6. Update `CHANGELOG.md` with the new Base UI version number.
 
 The generator prints the version it detected — confirm it matches what you expect before committing.
