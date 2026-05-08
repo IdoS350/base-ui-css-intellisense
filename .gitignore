@@ -9,7 +9,8 @@ out/
 releases/
 
 # Generated data (produced by pnpm run generate)
-data/
+data/*
+!data/base-ui-attributes.json
 
 # Logs
 *.log
