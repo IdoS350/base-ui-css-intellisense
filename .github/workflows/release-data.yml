@@ -1,0 +1,26 @@
+name: Publish Data Release
+
+on:
+  push:
+    tags:
+      - 'base-ui-v*'
+
+jobs:
+  release:
+    name: Create data release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Create GitHub release with data asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#base-ui-v}"
+          gh release create "$GITHUB_REF_NAME" \
+            --title "Base UI data v${VERSION}" \
+            --notes "Autocomplete data generated from Base UI v${VERSION}." \
+            data/base-ui-attributes.json
