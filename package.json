@@ -34,9 +34,6 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "css.customData": [
-      "./data/base-ui.css-data.json"
-    ],
     "configuration": {
       "title": "Base UI CSS IntelliSense",
       "properties": {
