@@ -15,7 +15,7 @@ const MOCK_DATA: BaseUiData = {
 describe('releaseUrl', () => {
   it('builds the correct GitHub release URL', () => {
     expect(releaseUrl('1.2.3')).toBe(
-      'https://github.com/IdoS350/base-ui-css-intellisense/releases/download/base-ui-v1.2.3/base-ui-attributes.json',
+      'https://github.com/IdoS350/base-ui-css-intellisense-data/releases/download/base-ui-v1.2.3/base-ui-attributes.json',
     )
   })
 })
