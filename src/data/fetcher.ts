@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import type { BaseUiData } from './types'
 
-const REPO = 'IdoS350/base-ui-css-intellisense'
+const REPO = 'IdoS350/base-ui-css-intellisense-data'
 const ASSET_NAME = 'base-ui-attributes.json'
 
 export function releaseUrl(version: string): string {
