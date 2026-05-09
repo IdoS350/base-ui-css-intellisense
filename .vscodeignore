@@ -14,3 +14,4 @@ releases/**
 .prettierignore
 CLAUDE.md
 .claude/**
+.github/**
