@@ -5,6 +5,8 @@
 
 Autocomplete and hover documentation for [Base UI](https://base-ui.com) data attributes and CSS variables — directly in your CSS, SCSS, and Less files.
 
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=idos.base-ui-css-intellisense).
+
 ## What it does
 
 When you write CSS attribute selectors or custom property values targeting Base UI components, this extension gives you completions and inline docs without leaving your editor. Type `[data-` to see all Base UI data attributes with descriptions, pick one, then get value completions for enumerated options like `top | bottom | left | right`. Hover any Base UI `--variable` or `[data-*]` selector to see which components use it and jump straight to the source on GitHub.
