@@ -83,7 +83,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
       `[base-ui] provideCompletionItems lang=${document.languageId} ctx=${JSON.stringify(ctx)}`,
     )
 
-    let scopeComponents: string[] = []
+    let scopeComponents: string[] | null = null
     if (
       ctx.kind !== 'none' &&
       ctx.selectorScope !== null &&
@@ -128,14 +128,14 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private attributeNameCompletions(
     prefix: string,
     position: vscode.Position,
-    scopeComponents: string[],
+    scopeComponents: string[] | null,
   ): vscode.CompletionItem[] {
     const range = this.prefixRange(prefix, position)
     return this.attributeIndex
       .filter((entry) => entry.attribute.name.startsWith(prefix))
       .filter(
         (entry) =>
-          scopeComponents.length === 0 ||
+          scopeComponents === null ||
           entry.components.some((c) => scopeComponents.includes(c)),
       )
       .map((entry) => {
@@ -181,7 +181,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
   private cssVariableCompletions(
     prefix: string,
     position: vscode.Position,
-    scopeComponents: string[],
+    scopeComponents: string[] | null,
     needsVarWrapper: boolean,
   ): vscode.CompletionItem[] {
     const range = this.prefixRange(prefix, position)
@@ -189,7 +189,7 @@ export class BaseUiCompletionProvider implements vscode.CompletionItemProvider {
       .filter((entry) => entry.cssVar.name.startsWith(prefix))
       .filter(
         (entry) =>
-          scopeComponents.length === 0 ||
+          scopeComponents === null ||
           entry.components.some((c) => scopeComponents.includes(c)),
       )
       .map((entry) => {
